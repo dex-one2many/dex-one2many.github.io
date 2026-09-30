@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- TODO: 프로젝트명 / 논문 제목 -->
+  <title>Dex-One2Many — [Paper Title]</title>
+  <!-- TODO: 한 줄 설명 (검색/공유 미리보기용) -->
+  <meta name="description" content="[One-sentence description of the project.]">
+  <meta property="og:title" content="Dex-One2Many">
+  <meta property="og:description" content="[One-sentence description of the project.]">
+  <meta property="og:type" content="website">
+  <!-- TODO: 공유 썸네일 이미지 (1200x630 권장) -->
+  <meta property="og:image" content="static/images/og.png">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2306090d'/><text x='16' y='22' font-family='Arial,sans-serif' font-weight='700' font-size='19' fill='%232563eb' text-anchor='middle'>D</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/index.css">
+  <script defer src="static/js/index.js"></script>
+</head>
+<body>
+
+  <!-- ============ FIXED NAV ============ -->
+  <nav id="site-nav" class="nav" aria-label="Page">
+    <a href="#hero" class="nav__brand">Dex-One2Many</a>
+    <div class="nav__links">
+      <a href="#overview" class="nav__link" data-sec="overview">Overview</a>
+      <a href="#abstract" class="nav__link" data-sec="abstract">Abstract</a>
+      <a href="#method"   class="nav__link" data-sec="method">Method</a>
+      <a href="#results"  class="nav__link" data-sec="results">Results</a>
+      <a href="#bibtex"   class="nav__link" data-sec="bibtex">BibTeX</a>
+    </div>
+    <!-- 오른쪽 위 링크 묶음. TODO: 각 href 채우기 -->
+    <div class="nav__actions">
+      <a href="#" target="_blank" rel="noopener noreferrer" class="nav__action">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 1.5V8h4.5L14 3.5z"/></svg>
+        Paper
+      </a>
+      <a href="#" target="_blank" rel="noopener noreferrer" class="nav__action">
+        <!-- arXiv 아이콘: Academicons (jpswalsh/academicons, SIL OFL 1.1) -->
+        <svg viewBox="100 27 248 330" fill="currentColor" aria-hidden="true"><path d="m 119.65,351.996 c -5.84961,0.13477 -11.1943,-3.29883 -13.502,-8.67578 -2.19629,-5.27051 -0.61914,-8.9668 4.19727,-15.8652 7.05469,-10.3799 78.8242,-96.5625 78.8242,-96.5625 l -15.8828,-14.8633 c -13.3809,-13.3779 -13.9561,-31.333 -1.50977,-43.7754 l 18.4922,-17.6133 -51.5977,-63.377 c -4.00586,-4.26758 -6.48535,-11.7559 -4.24805,-17.1309 2.27832,-5.53613 7.69727,-9.12891 13.6836,-9.07031 3.83398,0.0957 7.43262,1.87402 9.83789,4.86133 l 61.3691,57.0566 94.5762,-90.0703 c 3.19434,-3.08398 7.44336,-4.83984 11.8828,-4.91016 1.60449,0.0039 3.19824,0.245117 4.73242,0.714844 5.7793,1.80566 10.249,6.41797 11.8711,12.252 1.2998,5.47363 -0.27637,11.2334 -4.18164,15.2832 l -83.0859,100.011996 14.8789,13.834 c 11.0957,10.0029 11.1543,27.3906 0.12695,37.4688 l -16.2949,15.6309 56.2559,66.4434 0.0742,0.0859 0.0664,0.0899 c 5.02734,6.53125 7.43164,11.5615 4.83984,17.9395 -3.13379,5.96875 -8.69727,10.29 -15.2559,11.8516 -0.67676,0.0908 -1.35938,0.13574 -2.04297,0.13671 l -0.004,-0.0117 c -4.42871,-0.27051 -8.61035,-2.13086 -11.7754,-5.24023 l -0.13086,-0.10743 -0.12304,-0.11132 -65.207,-59.127 -89.8965,86.2402 c 0,0 -5.33398,6.47754 -10.9707,6.61133 z m 178.104,-33.041 c 0.47852,-0.002 0.95703,-0.0332 1.43164,-0.0957 4.84277,-1.33301 8.95605,-4.54004 11.4316,-8.91016 1.44922,-3.5625 1.00293,-6.45703 -4.19727,-13.2148 l -56.0586,-66.2188 -26.375,25.3027 64.9551,58.9062 c 2.33887,2.41504 5.46484,3.91113 8.8125,4.2168 v 0.0137 z M 192.436,227.402 334.446,57.244 c 2.78711,-3.48926 4.5293,-6.97949 3.3418,-10.9121 -1.16113,-4.30273 -4.43457,-7.71777 -8.68555,-9.05664 -1.08105,-0.333984 -2.20508,-0.503906 -3.33594,-0.505859 -3.20801,0.07617 -6.26953,1.35645 -8.57617,3.58789 l -142.033,135.284999 c -11.1719,11.1719 -9.48242,26.0195 1.39258,36.8945 z"/></svg>
+        arXiv
+      </a>
+      <a href="#" target="_blank" rel="noopener noreferrer" class="nav__cta">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.85 9.73.5.1.68-.22.68-.49l-.01-1.7c-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05a9.4 9.4 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.82c0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+        Code
+      </a>
+    </div>
+  </nav>
+
+  <!-- ============ HERO (풀스크린 teaser) ============ -->
+  <header id="hero" class="hero">
+    <!-- TODO: static/videos/teaser.mp4 에 teaser 영상 배치. poster는 영상 첫 프레임 이미지(선택) -->
+    <video class="hero__video" autoplay muted loop playsinline preload="metadata" poster="" aria-hidden="true">
+      <source src="static/videos/teaser.mp4" type="video/mp4">
+    </video>
+    <div class="hero__overlay"></div>
+
+    <!-- 첫 화면은 영상 + 프로젝트명만. 링크 버튼은 아래 논문 헤더 섹션에 있음 -->
+    <div class="hero__content">
+      <h1 class="hero__title">Dex-One2Many</h1>
+    </div>
+  </header>
+
+  <!-- ============ PAPER HEADER ============ -->
+  <section id="top" class="section paper-header">
+    <div class="container" data-reveal>
+      <!-- TODO: 논문 제목 -->
+      <h2 class="paper-header__title">[Full Paper Title Goes Here]</h2>
+
+      <div class="paper-header__meta">
+        <!-- TODO: 저자 (개인 페이지 링크, 위첨자로 소속/각주 표시) -->
+        <div class="authors">
+          <span><a href="#">Author One</a><sup>1*</sup></span>
+          <span><a href="#">Author Two</a><sup>1*</sup></span>
+          <span><a href="#">Author Three</a><sup>2</sup></span>
+          <span><a href="#">Author Four</a><sup>1†</sup></span>
+        </div>
+        <!-- TODO: 소속 -->
+        <div class="affils">
+          <span><sup>1</sup>Institution One</span>
+          <span><sup>2</sup>Institution Two</span>
+        </div>
+        <!-- TODO: 각주 (필요 없으면 삭제) -->
+        <div class="notes">
+          <span><sup>*</sup>Equal contribution</span>
+          <span><sup>†</sup>Corresponding author</span>
+        </div>
+        <!-- TODO: 학회/저널명 -->
+        <div class="venue">[Conference Name] 2026</div>
+      </div>
+
+      <!-- 모바일에서는 nav 링크가 숨겨지므로 여기서 한 번 더 노출 -->
+      <div class="btn-row">
+        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 1.5V8h4.5L14 3.5z"/></svg>
+          Paper
+        </a>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">
+          <svg viewBox="100 27 248 330" fill="currentColor" aria-hidden="true"><path d="m 119.65,351.996 c -5.84961,0.13477 -11.1943,-3.29883 -13.502,-8.67578 -2.19629,-5.27051 -0.61914,-8.9668 4.19727,-15.8652 7.05469,-10.3799 78.8242,-96.5625 78.8242,-96.5625 l -15.8828,-14.8633 c -13.3809,-13.3779 -13.9561,-31.333 -1.50977,-43.7754 l 18.4922,-17.6133 -51.5977,-63.377 c -4.00586,-4.26758 -6.48535,-11.7559 -4.24805,-17.1309 2.27832,-5.53613 7.69727,-9.12891 13.6836,-9.07031 3.83398,0.0957 7.43262,1.87402 9.83789,4.86133 l 61.3691,57.0566 94.5762,-90.0703 c 3.19434,-3.08398 7.44336,-4.83984 11.8828,-4.91016 1.60449,0.0039 3.19824,0.245117 4.73242,0.714844 5.7793,1.80566 10.249,6.41797 11.8711,12.252 1.2998,5.47363 -0.27637,11.2334 -4.18164,15.2832 l -83.0859,100.011996 14.8789,13.834 c 11.0957,10.0029 11.1543,27.3906 0.12695,37.4688 l -16.2949,15.6309 56.2559,66.4434 0.0742,0.0859 0.0664,0.0899 c 5.02734,6.53125 7.43164,11.5615 4.83984,17.9395 -3.13379,5.96875 -8.69727,10.29 -15.2559,11.8516 -0.67676,0.0908 -1.35938,0.13574 -2.04297,0.13671 l -0.004,-0.0117 c -4.42871,-0.27051 -8.61035,-2.13086 -11.7754,-5.24023 l -0.13086,-0.10743 -0.12304,-0.11132 -65.207,-59.127 -89.8965,86.2402 c 0,0 -5.33398,6.47754 -10.9707,6.61133 z m 178.104,-33.041 c 0.47852,-0.002 0.95703,-0.0332 1.43164,-0.0957 4.84277,-1.33301 8.95605,-4.54004 11.4316,-8.91016 1.44922,-3.5625 1.00293,-6.45703 -4.19727,-13.2148 l -56.0586,-66.2188 -26.375,25.3027 64.9551,58.9062 c 2.33887,2.41504 5.46484,3.91113 8.8125,4.2168 v 0.0137 z M 192.436,227.402 334.446,57.244 c 2.78711,-3.48926 4.5293,-6.97949 3.3418,-10.9121 -1.16113,-4.30273 -4.43457,-7.71777 -8.68555,-9.05664 -1.08105,-0.333984 -2.20508,-0.503906 -3.33594,-0.505859 -3.20801,0.07617 -6.26953,1.35645 -8.57617,3.58789 l -142.033,135.284999 c -11.1719,11.1719 -9.48242,26.0195 1.39258,36.8945 z"/></svg>
+          arXiv
+        </a>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">Code</a>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">Video</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OVERVIEW ============ -->
+  <section id="overview" class="section section--tight">
+    <div class="container">
+      <div data-reveal>
+        <h2 class="section__title">Overview</h2>
+        <!-- TODO: 1~2문장 핵심 요약 -->
+        <p class="section__lead">
+          [One or two sentences that state the core idea and why it matters.]
+        </p>
+      </div>
+
+      <!-- TODO: 3분할 영상 그리드. 필요 없으면 이 블록 삭제 -->
+      <div class="video-grid" data-reveal>
+        <figure>
+          <div class="media">
+            <video autoplay muted loop playsinline preload="metadata" aria-label="[Clip 1 description]">
+              <source src="static/videos/overview_1.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption>[Caption 1]</figcaption>
+        </figure>
+        <figure>
+          <div class="media">
+            <video autoplay muted loop playsinline preload="metadata" aria-label="[Clip 2 description]">
+              <source src="static/videos/overview_2.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption>[Caption 2]</figcaption>
+        </figure>
+        <figure>
+          <div class="media">
+            <video autoplay muted loop playsinline preload="metadata" aria-label="[Clip 3 description]">
+              <source src="static/videos/overview_3.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption>[Caption 3]</figcaption>
+        </figure>
+      </div>
+
+      <!-- TODO: 메인(나레이션) 영상. 없으면 삭제 -->
+      <figure class="media media--wide" data-reveal>
+        <video controls playsinline preload="metadata" poster="">
+          <source src="static/videos/main_video.mp4" type="video/mp4">
+        </video>
+      </figure>
+      <p class="video-note">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4.03v8.05A4.5 4.5 0 0 0 16.5 12z"/></svg>
+        This video includes narration — unmute to listen.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ ABSTRACT ============ -->
+  <section id="abstract" class="section section--alt">
+    <div class="container--text" data-reveal>
+      <h2 class="section__title">Abstract</h2>
+      <!-- TODO: 초록 -->
+      <div class="prose">
+        <p>
+          [Abstract paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.]
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ METHOD ============ -->
+  <section id="method" class="section">
+    <div class="container">
+      <div data-reveal>
+        <h2 class="section__title">Method</h2>
+        <!-- TODO: 방법 요약 -->
+        <p class="section__lead">
+          [Short description of the pipeline / key components.]
+        </p>
+      </div>
+      <!-- TODO: 파이프라인 그림 또는 영상 (static/images/method.png) -->
+      <figure class="media media--plain" data-reveal>
+        <img src="static/images/method.png" alt="[Method overview figure]" loading="lazy">
+        <figcaption>[Figure caption describing the method.]</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ RESULTS ============ -->
+  <section id="results" class="section section--alt">
+    <div class="container">
+      <div data-reveal>
+        <h2 class="section__title">Results</h2>
+        <!-- TODO: 결과 요약 -->
+        <p class="section__lead">
+          [Headline result in one or two sentences.]
+        </p>
+      </div>
+
+      <!-- TODO: 결과 영상 그리드. 필요한 만큼 figure 복제 -->
+      <div class="video-grid" data-reveal>
+        <figure>
+          <div class="media">
+            <video autoplay muted loop playsinline preload="metadata" aria-label="[Result 1]">
+              <source src="static/videos/result_1.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption>[Task 1]</figcaption>
+        </figure>
+        <figure>
+          <div class="media">
+            <video autoplay muted loop playsinline preload="metadata" aria-label="[Result 2]">
+              <source src="static/videos/result_2.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption>[Task 2]</figcaption>
+        </figure>
+        <figure>
+          <div class="media">
+            <video autoplay muted loop playsinline preload="metadata" aria-label="[Result 3]">
+              <source src="static/videos/result_3.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption>[Task 3]</figcaption>
+        </figure>
+      </div>
+
+      <!-- TODO: 정량 결과 그림 (static/images/results.png). 없으면 삭제 -->
+      <figure class="media media--plain media--wide" data-reveal>
+        <img src="static/images/results.png" alt="[Quantitative results figure]" loading="lazy">
+        <figcaption>[Figure caption describing the results.]</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ BIBTEX ============ -->
+  <section id="bibtex" class="section">
+    <div class="container" data-reveal>
+      <h2 class="section__title">BibTeX</h2>
+      <div class="bibtex">
+        <button type="button" class="btn btn--outline btn--sm bibtex__copy" data-copy-target="#bibtex-code">Copy</button>
+        <!-- TODO: BibTeX -->
+<pre id="bibtex-code">@article{dexone2many2026,
+  title   = {[Full Paper Title]},
+  author  = {One, Author and Two, Author and Three, Author and Four, Author},
+  journal = {[arXiv preprint arXiv:XXXX.XXXXX]},
+  year    = {2026}
+}</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <!-- TODO: 감사의 말 / 라이선스. 필요 없으면 문단 삭제 -->
+      <p>
+        This website is licensed under a
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>
+        license. Layout inspired by
+        <a href="https://nvidia-isaac.github.io/video_to_data/chord/" target="_blank" rel="noopener noreferrer">CHORD</a>
+        and
+        <a href="https://play2perfect.github.io/" target="_blank" rel="noopener noreferrer">Play2Perfect</a>.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
