@@ -244,6 +244,7 @@
              task: sweep | hammer | stamp | can | doll (표시 순서)
              embodiment: ur3_wuji1 | ur5e_sharpa | ur5e_wuji2 | ur5e_allegro
              n: 1 | 2 | 3
+             사람 영상: static/videos/sim/{task}_human.mp4 (doll 은 static/videos/one2many_human.mp4 재사용)
              첫 탭(Sweep)만 src, 나머지는 data-src 로 두면 탭을 눌렀을 때 로드됨 -->
         <p class="subsection__note">Simulation rollouts on unseen configurations. Five tasks spanning direct manipulation (Doll, Can, Stamp) and tool use (Hammer, Sweep), each learned from one human video and trained for four arm–hand embodiments by swapping only the robot model and its grasp set (94.6–96.8% mean success).</p>
 
@@ -263,6 +264,13 @@
             <button type="button" class="carousel__arrow carousel__arrow--prev" data-prev aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
             <div class="tab-panels" data-tabs-for="sim">
               <div class="tab-panel is-active" role="tabpanel" data-panel="sweep">
+                <div class="sim-row sim-row--human">
+                  <div class="sim-row__label">Human video</div>
+                  <div class="media-row media-row--3">
+                    <figure><div class="media"><video src="static/videos/sim/sweep_human.mp4" autoplay muted loop playsinline preload="metadata"></video></div></figure>
+                    <p class="sim-row__caption">Below: the same task on four different dexterous hands, started from initial and goal poses this video never shows.</p>
+                  </div>
+                </div>
                 <div class="sim-row">
                   <div class="sim-row__label">UR3 + Wuji 1</div>
                   <div class="media-row media-row--3">
@@ -297,6 +305,13 @@
                 </div>
               </div>
               <div class="tab-panel" role="tabpanel" data-panel="hammer" hidden>
+                <div class="sim-row sim-row--human">
+                  <div class="sim-row__label">Human video</div>
+                  <div class="media-row media-row--3">
+                    <figure><div class="media"><video data-src="static/videos/sim/hammer_human.mp4" muted loop playsinline preload="metadata"></video></div></figure>
+                    <p class="sim-row__caption">Below: the same task on four different dexterous hands, started from initial and goal poses this video never shows.</p>
+                  </div>
+                </div>
                 <div class="sim-row">
                   <div class="sim-row__label">UR3 + Wuji 1</div>
                   <div class="media-row media-row--3">
@@ -331,6 +346,13 @@
                 </div>
               </div>
               <div class="tab-panel" role="tabpanel" data-panel="stamp" hidden>
+                <div class="sim-row sim-row--human">
+                  <div class="sim-row__label">Human video</div>
+                  <div class="media-row media-row--3">
+                    <figure><div class="media"><video data-src="static/videos/sim/stamp_human.mp4" muted loop playsinline preload="metadata"></video></div></figure>
+                    <p class="sim-row__caption">Below: the same task on four different dexterous hands, started from initial and goal poses this video never shows.</p>
+                  </div>
+                </div>
                 <div class="sim-row">
                   <div class="sim-row__label">UR3 + Wuji 1</div>
                   <div class="media-row media-row--3">
@@ -365,6 +387,13 @@
                 </div>
               </div>
               <div class="tab-panel" role="tabpanel" data-panel="can" hidden>
+                <div class="sim-row sim-row--human">
+                  <div class="sim-row__label">Human video</div>
+                  <div class="media-row media-row--3">
+                    <figure><div class="media"><video data-src="static/videos/sim/can_human.mp4" muted loop playsinline preload="metadata"></video></div></figure>
+                    <p class="sim-row__caption">Below: the same task on four different dexterous hands, started from initial and goal poses this video never shows.</p>
+                  </div>
+                </div>
                 <div class="sim-row">
                   <div class="sim-row__label">UR3 + Wuji 1</div>
                   <div class="media-row media-row--3">
@@ -399,6 +428,13 @@
                 </div>
               </div>
               <div class="tab-panel" role="tabpanel" data-panel="doll" hidden>
+                <div class="sim-row sim-row--human">
+                  <div class="sim-row__label">Human video</div>
+                  <div class="media-row media-row--3">
+                    <figure><div class="media"><video data-src="static/videos/one2many_human.mp4" muted loop playsinline preload="metadata"></video></div></figure>
+                    <p class="sim-row__caption">Below: the same task on four different dexterous hands, started from initial and goal poses this video never shows.</p>
+                  </div>
+                </div>
                 <div class="sim-row">
                   <div class="sim-row__label">UR3 + Wuji 1</div>
                   <div class="media-row media-row--3">
