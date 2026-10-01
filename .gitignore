@@ -1,0 +1,7 @@
+# 원본 실험 자료(38 MB). tools/build_taxonomy.py 가 읽어 static/ 으로 변환하므로 배포에는 불필요
+exp_figures/
+
+# 논문 PDF (문구 작성용 임시 파일, 배포 제외)
+arxiv_dex_one2many.pdf
+
+.DS_Store

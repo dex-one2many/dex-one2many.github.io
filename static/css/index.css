@@ -312,6 +312,9 @@ section[id], header[id] { scroll-margin-top: var(--nav-h); }
   margin-bottom: 18px;
 }
 
+/* 설명문을 아래 콘텐츠(본문 최대 폭)와 같은 너비로 */
+p.section__lead.section__lead--wide { max-width: var(--max-w); }
+
 /* 부제 없이 제목 바로 아래 콘텐츠가 올 때 */
 .section__title--solo { margin-bottom: 36px; }
 
@@ -489,6 +492,362 @@ figcaption,
   gap: 6px;
   font-size: .92rem;
   color: var(--muted);
+}
+
+/* ---------- Results: 소제목 / 탭 / 영상 행 ---------- */
+.subsection { margin-top: clamp(48px, 6vw, 72px); }
+.subsection:first-of-type { margin-top: 0; }
+
+.subsection__title {
+  font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  margin-bottom: 12px;
+}
+.subsection__lead {
+  max-width: var(--max-w-text);
+  margin: 0 auto 24px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+/* 한 블록 안에서 두 번째 콘텐츠(예: 차트 아래 영상 캐러셀) 앞에 붙는 짧은 설명 */
+.subsection__note {
+  max-width: var(--max-w-text);
+  margin: clamp(36px, 5vw, 56px) auto 20px;
+  text-align: center;
+  font-size: .95rem;
+  color: var(--muted);
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.tab {
+  padding: 9px 20px;
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: .98rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color .2s ease, background .2s ease, color .2s ease, transform .15s ease;
+}
+.tab:hover { border-color: var(--accent); color: var(--accent-strong); transform: translateY(-1px); }
+.tab:focus-visible { outline: 3px solid var(--accent-soft); outline-offset: 2px; }
+.tab.is-active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+.tab-panel[hidden] { display: none; }
+.tab-panel.is-entering { animation: panel-in .28s var(--ease); }
+@keyframes panel-in {
+  from { opacity: 0; transform: translateX(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---------- Carousel (Simulation / Real World): 제목 + 점 + 양옆 화살표 ---------- */
+.carousel__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 16px;
+}
+/* 위치 표시 점은 시각적으로만 숨김 — JS의 [data-tab] 역할과 키보드/스크린리더 접근은 유지 */
+.carousel__dots {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.carousel__title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.carousel__dots { display: flex; gap: 8px; }
+.dot {
+  width: 9px; height: 9px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid #c7ccd3;
+  background: transparent;
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.dot:hover { border-color: var(--accent); }
+.dot.is-active { background: var(--accent); border-color: var(--accent); transform: scale(1.25); }
+.dot:focus-visible { outline: 3px solid var(--accent-soft); outline-offset: 2px; }
+
+.carousel__body {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 40px;
+  gap: 10px;
+  align-items: center;
+}
+.carousel__arrow {
+  width: 40px; height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, .08);
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease, border-color .2s ease, transform .15s ease;
+}
+.carousel__arrow svg { width: 20px; height: 20px; }
+.carousel__arrow:hover { background: var(--accent); border-color: var(--accent); color: #fff; transform: translateY(-1px); }
+.carousel__arrow:focus-visible { outline: 3px solid var(--accent-soft); outline-offset: 2px; }
+
+@media (max-width: 860px) {
+  /* 좁은 화면: 화살표를 제목 양옆으로 올려 영상 폭을 확보.
+     carousel__body 를 투명하게 만들어 화살표·제목·패널을 한 flex 컨테이너에서 정렬한다. */
+  .carousel { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 18px; }
+  .carousel__body { display: contents; }
+  .carousel__arrow { width: 38px; height: 38px; }
+  .carousel__arrow--prev { order: -1; }
+  .carousel__head { order: 0; margin-bottom: 0; }
+  .carousel__arrow--next { order: 1; }
+  .carousel .tab-panels { order: 2; flex: 1 1 100%; margin-top: 8px; }
+}
+
+.media-row {
+  display: grid;
+  gap: 14px;
+}
+.media-row--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.media-row--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.media-row figure { margin: 0; }
+
+/* Simulation: embodiment 한 줄 = 왼쪽 라벨 + 클립 3개 */
+.sim-row {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+}
+.sim-row + .sim-row { margin-top: 14px; }
+.sim-row__label {
+  font-size: .82rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-secondary);
+  text-align: right;
+  white-space: nowrap;
+}
+
+@media (max-width: 860px) {
+  .media-row--4, .media-row--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sim-row { grid-template-columns: 1fr; gap: 10px; }
+  .sim-row__label { text-align: left; }
+  .sim-row + .sim-row { margin-top: 26px; }
+}
+@media (max-width: 560px) {
+  .media-row--4, .media-row--3 { grid-template-columns: 1fr; }
+}
+
+/* ---------- Results: 정량 결과 차트 ---------- */
+.rchart { position: relative; }
+
+.rchart__legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 22px;
+  margin-bottom: 18px;
+  font-size: .92rem;
+  color: var(--text-secondary);
+}
+.rchart__key { display: inline-flex; align-items: center; gap: 8px; }
+.rchart__swatch { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+
+.rchart__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.rchart__panel {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px 18px 10px;
+}
+.rchart__panel-title {
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--text);
+}
+.rchart__row + .rchart__row { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); }
+.rchart__row-head { margin-bottom: 2px; }
+.rchart__row-title { font-size: .95rem; font-weight: 700; color: var(--text); }
+.rchart__row--primary .rchart__row-title { font-size: 1.02rem; }
+.rchart__row:not(.rchart__row--primary) .rchart__row-title { color: var(--text-secondary); font-weight: 600; }
+
+.rchart__svg { display: block; width: 100%; overflow: visible; font-family: var(--font-sans); }
+.rchart__tick, .rchart__xlabel, .rchart__value, .rchart__na { fill: var(--text-secondary); font-size: 11px; }
+.rchart__xlabel { font-size: 12px; font-weight: 600; fill: var(--text); }
+.rchart__value { font-size: 11px; font-weight: 600; }
+.rchart__na { fill: var(--muted); font-size: 9px; }
+.rchart__hit { outline: none; cursor: default; }
+.rchart__hit:focus-visible { stroke: var(--accent); stroke-width: 2; }
+
+.rchart__tip {
+  position: absolute;
+  z-index: 5;
+  transform: translate(-50%, calc(-100% - 8px));
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: var(--text);
+  color: #fff;
+  font-size: .8rem;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .18);
+}
+.rchart__tip[hidden] { display: none; }
+
+@media (max-width: 860px) {
+  .rchart__grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- Results: 인터랙티브 grasp taxonomy ---------- */
+.taxo {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(300px, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+/* 그림 위(위쪽) 안내 띠 */
+.taxo__tip {
+  margin-bottom: 14px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #eceef2;
+  color: var(--text-secondary);
+  font-size: .95rem;
+  text-align: center;
+}
+.taxo__stage {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--border);
+  user-select: none;
+}
+.taxo__stage img { display: block; width: 100%; height: auto; }
+
+/* 단위 정사각형(100×100px)을 JS가 matrix3d로 바둑판 위치에 투영 */
+.taxo__grid {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100px; height: 100px;
+  transform-origin: 0 0;
+  display: grid;
+}
+.taxo__cell {
+  position: relative;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease;
+}
+.taxo__cell[data-grasp] { background: var(--cell-color, transparent); }
+.taxo__cell.is-hover,
+.taxo__cell:hover,
+.taxo__cell:focus-visible {
+  border-color: #fff;
+  outline: 2px solid var(--text);
+  outline-offset: -2px;
+  z-index: 1;
+}
+.taxo__cell:not([data-grasp]) { cursor: default; }
+
+/* ?taxodebug 모드: 격자 외곽선 + 셀 인덱스 */
+.taxo--debug .taxo__grid { outline: 2px dashed #e11d48; }
+.taxo--debug .taxo__cell { border-color: rgba(225, 29, 72, .6); }
+.taxo--debug .taxo__cell::after {
+  content: attr(data-rc);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 7px;
+  color: #e11d48;
+  pointer-events: none;
+}
+
+.taxo__card {
+  position: sticky;
+  top: calc(var(--nav-h) + 16px);
+  padding: 22px;
+  border-radius: var(--radius-lg);
+  background: #fff;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.taxo__card img {
+  width: 100%;
+  aspect-ratio: 6 / 5;
+  height: auto;
+  object-fit: cover;
+  border-radius: var(--radius);
+  background: var(--bg-alt);
+}
+.taxo__sub { font-size: .8rem; color: var(--muted); }
+
+/* 대표 타일 아래 이름 (페이지 폰트로 얹음) */
+.taxo__tile-label {
+  position: absolute;
+  transform: translate(-50%, 0);
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  pointer-events: none;
+}
+@media (max-width: 640px) { .taxo__tile-label { font-size: .62rem; } }
+.taxo__card img[hidden] { display: none; }
+.taxo__swatch {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+  background: var(--cell-color, var(--border));
+}
+.taxo__name { font-weight: 700; font-size: 1.25rem; color: var(--text); }
+.taxo__sub { font-size: .85rem; }
+.taxo__hint { font-size: .95rem; color: var(--muted); padding: 48px 0; }
+.taxo__hint:empty { display: none; }
+
+@media (max-width: 860px) {
+  .taxo { grid-template-columns: 1fr; }
+  .taxo__card { position: static; min-height: 0; flex-direction: row; justify-content: flex-start; text-align: left; }
+  .taxo__card img { width: 88px; height: 88px; }
 }
 
 /* ---------- BibTeX ---------- */

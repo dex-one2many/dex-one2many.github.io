@@ -19,6 +19,18 @@ python3 -m http.server 8000
 | Full-screen teaser video | `static/videos/teaser.mp4` (H.264 MP4, ~1920×1080, keep under ~15 MB) |
 | Other videos / figures | `static/videos/`, `static/images/` |
 
+## Grasp taxonomy assets
+
+`static/images/taxonomy/` and `static/js/taxonomy-data.js` are generated from the raw figure
+material in `exp_figures/` (git-ignored). After updating that folder, run:
+
+```bash
+python3 tools/build_taxonomy.py
+```
+
+It converts panels and per-cell grasp renders to WebP, computes grid corners from `cells.json`,
+and places tile labels. Append `?taxodebug` to the page URL to see the grid overlay.
+
 ## Deploy
 
 GitHub repo → Settings → Pages → Source: **Deploy from a branch**, branch `main`, folder `/ (root)`.
