@@ -3,12 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- TODO: 프로젝트명 / 논문 제목 -->
-  <title>Dex-One2Many — [Paper Title]</title>
-  <!-- TODO: 한 줄 설명 (검색/공유 미리보기용) -->
-  <meta name="description" content="[One-sentence description of the project.]">
-  <meta property="og:title" content="Dex-One2Many">
-  <meta property="og:description" content="[One-sentence description of the project.]">
+  <title>Dex-One2Many — Learning Dexterous Manipulation from a Single Human Demonstration</title>
+  <!-- TODO: 초록이 확정되면 한 줄 설명을 다듬기 (검색/공유 미리보기용) -->
+  <meta name="description" content="Dex-One2Many learns dexterous manipulation from a single human demonstration.">
+  <meta property="og:title" content="Dex-One2Many: Learning Dexterous Manipulation from a Single Human Demonstration">
+  <meta property="og:description" content="Dex-One2Many learns dexterous manipulation from a single human demonstration.">
   <meta property="og:type" content="website">
   <!-- TODO: 공유 썸네일 이미지 (1200x630 권장) -->
   <meta property="og:image" content="static/images/og.png">
@@ -28,7 +27,7 @@
     <a href="#hero" class="nav__brand">Dex-One2Many</a>
     <div class="nav__links">
       <a href="#overview" class="nav__link" data-sec="overview">Overview</a>
-      <a href="#abstract" class="nav__link" data-sec="abstract">Abstract</a>
+      <a href="#highlight" class="nav__link" data-sec="highlight">Highlights</a>
       <a href="#method"   class="nav__link" data-sec="method">Method</a>
       <a href="#results"  class="nav__link" data-sec="results">Results</a>
       <a href="#bibtex"   class="nav__link" data-sec="bibtex">BibTeX</a>
@@ -68,29 +67,34 @@
   <!-- ============ PAPER HEADER ============ -->
   <section id="top" class="section paper-header">
     <div class="container" data-reveal>
-      <!-- TODO: 논문 제목 -->
-      <h2 class="paper-header__title">[Full Paper Title Goes Here]</h2>
+      <h2 class="paper-header__title">
+        Dex-One2Many: Learning Dexterous Manipulation<br class="br-desktop">
+        from a Single Human Demonstration
+      </h2>
 
       <div class="paper-header__meta">
-        <!-- TODO: 저자 (개인 페이지 링크, 위첨자로 소속/각주 표시) -->
+        <!-- TODO: 각 저자의 개인 페이지 링크(href) 채우기 -->
         <div class="authors">
-          <span><a href="#">Author One</a><sup>1*</sup></span>
-          <span><a href="#">Author Two</a><sup>1*</sup></span>
-          <span><a href="#">Author Three</a><sup>2</sup></span>
-          <span><a href="#">Author Four</a><sup>1†</sup></span>
+          <span><a href="https://ju-suk.github.io/">Jusuk Lee</a><sup>1*</sup></span>
+          <span><a href="https://shkim37.github.io/">Sungha Kim</a><sup>1*</sup></span>
+          <span><a href="#">Yeonsoo Park</a><sup>1*</sup></span>
+          <span><a href="#">Jonguk Cheon</a><sup>1</sup></span>
+          <span><a href="https://yoonkyojung.com/">Yoonkyo Jung</a><sup>2</sup></span>
+          <span><a href="#">Yongjun You</a><sup>1</sup></span>
+          <span><a href="https://scholar.google.com/citations?user=TLQUwIMAAAAJ&hl=ko">H. Jin Kim</a><sup>1</sup></span>
+          <span><a href="https://jbhuang0604.github.io/">Jia-Bin Huang</a><sup>2</sup></span>
+          <span><a href="https://furong-huang.com/">Furong Huang</a><sup>2</sup></span>
+          <span><a href="#">Youngseok Jang</a><sup>1†</sup></span>
+          <span><a href="https://sjlee.cc/">Seungjae Lee</a><sup>2†</sup></span>
         </div>
-        <!-- TODO: 소속 -->
         <div class="affils">
-          <span><sup>1</sup>Institution One</span>
-          <span><sup>2</sup>Institution Two</span>
+          <span><sup>1</sup>Seoul National University</span>
+          <span><sup>2</sup>University of Maryland, College Park</span>
         </div>
-        <!-- TODO: 각주 (필요 없으면 삭제) -->
         <div class="notes">
           <span><sup>*</sup>Equal contribution</span>
-          <span><sup>†</sup>Corresponding author</span>
+          <span><sup>†</sup>Equal advising</span>
         </div>
-        <!-- TODO: 학회/저널명 -->
-        <div class="venue">[Conference Name] 2026</div>
       </div>
 
       <!-- 모바일에서는 nav 링크가 숨겨지므로 여기서 한 번 더 노출 -->
@@ -116,44 +120,18 @@
         <h2 class="section__title">Overview</h2>
         <!-- TODO: 1~2문장 핵심 요약 -->
         <p class="section__lead">
+          <span class="tldr">TL;DR</span>
           [One or two sentences that state the core idea and why it matters.]
         </p>
       </div>
 
-      <!-- TODO: 3분할 영상 그리드. 필요 없으면 이 블록 삭제 -->
-      <div class="video-grid" data-reveal>
-        <figure>
-          <div class="media">
-            <video autoplay muted loop playsinline preload="metadata" aria-label="[Clip 1 description]">
-              <source src="static/videos/overview_1.mp4" type="video/mp4">
-            </video>
-          </div>
-          <figcaption>[Caption 1]</figcaption>
-        </figure>
-        <figure>
-          <div class="media">
-            <video autoplay muted loop playsinline preload="metadata" aria-label="[Clip 2 description]">
-              <source src="static/videos/overview_2.mp4" type="video/mp4">
-            </video>
-          </div>
-          <figcaption>[Caption 2]</figcaption>
-        </figure>
-        <figure>
-          <div class="media">
-            <video autoplay muted loop playsinline preload="metadata" aria-label="[Clip 3 description]">
-              <source src="static/videos/overview_3.mp4" type="video/mp4">
-            </video>
-          </div>
-          <figcaption>[Caption 3]</figcaption>
-        </figure>
-      </div>
-
-      <!-- TODO: 메인(나레이션) 영상. 없으면 삭제 -->
+      <!-- Overview 영상 1개. TODO: static/videos/overview.mp4 -->
       <figure class="media media--wide" data-reveal>
         <video controls playsinline preload="metadata" poster="">
-          <source src="static/videos/main_video.mp4" type="video/mp4">
+          <source src="static/videos/overview.mp4" type="video/mp4">
         </video>
       </figure>
+      <!-- TODO: 나레이션이 없는 영상이면 아래 안내 문구 삭제 -->
       <p class="video-note">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4.03v8.05A4.5 4.5 0 0 0 16.5 12z"/></svg>
         This video includes narration — unmute to listen.
@@ -161,17 +139,58 @@
     </div>
   </section>
 
-  <!-- ============ ABSTRACT ============ -->
-  <section id="abstract" class="section section--alt">
-    <div class="container--text" data-reveal>
-      <h2 class="section__title">Abstract</h2>
-      <!-- TODO: 초록 -->
-      <div class="prose">
-        <p>
-          [Abstract paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-          exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.]
+  <!-- ============ HIGHLIGHT: ONE VIDEO → MANY BEHAVIORS ============ -->
+  <section id="highlight" class="section section--alt">
+    <div class="container">
+      <div data-reveal>
+        <h2 class="section__title">From One Human Video to Many Dexterous Behaviors</h2>
+        <p class="section__lead">
+          Dex-One2Many handles diverse configurations that never appear in the video.
         </p>
+      </div>
+
+      <div class="one2many" data-reveal>
+        <!-- 왼쪽: 사람 시연 영상 1개. TODO: static/videos/one2many_human.mp4 -->
+        <figure class="one2many__source">
+          <div class="media">
+            <video autoplay muted loop playsinline preload="metadata" aria-label="The single human demonstration video">
+              <source src="static/videos/one2many_human.mp4" type="video/mp4">
+            </video>
+            <span class="media__badge">Human video</span>
+          </div>
+        </figure>
+
+        <div class="one2many__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M13 5l7 7-7 7"/></svg>
+        </div>
+
+        <!-- 오른쪽: 영상에 없던 configuration 3개를 가로로. TODO: 영상 경로 -->
+        <div class="one2many__targets">
+          <figure>
+            <div class="media">
+              <video autoplay muted loop playsinline preload="metadata" aria-label="[Configuration 1]">
+                <source src="static/videos/one2many_config_1.mp4" type="video/mp4">
+              </video>
+              <span class="media__badge media__badge--accent">Robot</span>
+            </div>
+          </figure>
+          <figure>
+            <div class="media">
+              <video autoplay muted loop playsinline preload="metadata" aria-label="[Configuration 2]">
+                <source src="static/videos/one2many_config_2.mp4" type="video/mp4">
+              </video>
+              <span class="media__badge media__badge--accent">Robot</span>
+            </div>
+          </figure>
+          <figure>
+            <div class="media">
+              <video autoplay muted loop playsinline preload="metadata" aria-label="[Configuration 3]">
+                <source src="static/videos/one2many_config_3.mp4" type="video/mp4">
+              </video>
+              <span class="media__badge media__badge--accent">Robot</span>
+            </div>
+          </figure>
+        </div>
       </div>
     </div>
   </section>
@@ -179,17 +198,12 @@
   <!-- ============ METHOD ============ -->
   <section id="method" class="section">
     <div class="container">
-      <div data-reveal>
-        <h2 class="section__title">Method</h2>
-        <!-- TODO: 방법 요약 -->
-        <p class="section__lead">
-          [Short description of the pipeline / key components.]
-        </p>
-      </div>
-      <!-- TODO: 파이프라인 그림 또는 영상 (static/images/method.png) -->
+      <h2 class="section__title section__title--solo" data-reveal>Method</h2>
+      <!-- 방법 설명 영상 (자동 재생, 무음, 반복, 재생 바). 흰 배경 다이어그램이라 카드 테두리 없이 표시 -->
       <figure class="media media--plain" data-reveal>
-        <img src="static/images/method.png" alt="[Method overview figure]" loading="lazy">
-        <figcaption>[Figure caption describing the method.]</figcaption>
+        <video autoplay muted loop controls playsinline preload="metadata" aria-label="Method overview video">
+          <source src="static/videos/method_video.mp4" type="video/mp4">
+        </video>
       </figure>
     </div>
   </section>
@@ -247,11 +261,11 @@
       <h2 class="section__title">BibTeX</h2>
       <div class="bibtex">
         <button type="button" class="btn btn--outline btn--sm bibtex__copy" data-copy-target="#bibtex-code">Copy</button>
-        <!-- TODO: BibTeX -->
-<pre id="bibtex-code">@article{dexone2many2026,
-  title   = {[Full Paper Title]},
-  author  = {One, Author and Two, Author and Three, Author and Four, Author},
-  journal = {[arXiv preprint arXiv:XXXX.XXXXX]},
+        <!-- TODO: arXiv 번호가 나오면 journal 줄 채우기 -->
+<pre id="bibtex-code">@article{lee2026dexone2many,
+  title   = {Dex-One2Many: Learning Dexterous Manipulation from a Single Human Demonstration},
+  author  = {Lee, Jusuk and Kim, Sungha and Park, Yeonsoo and Cheon, Jonguk and Jung, Yoonkyo and You, Yongjun and Kim, H. Jin and Huang, Jia-Bin and Huang, Furong and Jang, Youngseok and Lee, Seungjae},
+  journal = {arXiv preprint arXiv:XXXX.XXXXX},
   year    = {2026}
 }</pre>
       </div>
