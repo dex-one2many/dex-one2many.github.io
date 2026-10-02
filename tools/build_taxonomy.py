@@ -14,7 +14,7 @@ from pathlib import Path
 from PIL import Image, ImageChops, ImageStat
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / "exp_figures"
+SRC = ROOT / "exp_figures_new"   # 5 task 전체 자료 (exp_figures 의 상위 집합)
 OUT_IMG = ROOT / "static" / "images" / "taxonomy"
 OUT_JS = ROOT / "static" / "js" / "taxonomy-data.js"
 
@@ -22,6 +22,8 @@ TASKS = [  # (폴더, 키, 라벨) — 페이지 표시 순서
     ("pikachu_in_pot", "doll", "Doll"),
     ("coke_in_bucket", "can", "Can"),
     ("stamp", "stamp", "Stamp"),
+    ("hammering", "hammer", "Hammer"),
+    ("sweep_toy", "sweep", "Sweep"),
 ]
 EMBS = [  # (자료 키, 페이지 키, 라벨) — 페이지 표시 순서
     ("ur3_wuji_left", "ur3_wuji1", "UR3 + Wuji 1"),

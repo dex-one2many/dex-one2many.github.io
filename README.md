@@ -22,7 +22,7 @@ python3 -m http.server 8000
 ## Grasp taxonomy assets
 
 `static/images/taxonomy/` and `static/js/taxonomy-data.js` are generated from the raw figure
-material in `exp_figures/` (git-ignored). After updating that folder, run:
+material in `exp_figures_new/` (git-ignored). After updating that folder, run:
 
 ```bash
 python3 tools/build_taxonomy.py

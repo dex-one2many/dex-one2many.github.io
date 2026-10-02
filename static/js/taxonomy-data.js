@@ -1965,6 +1965,1314 @@ window.TAXONOMY_DATA = {
      }
     }
    ]
+  },
+  {
+   "key": "hammer",
+   "label": "Hammer",
+   "panels": [
+    {
+     "key": "ur3_wuji1",
+     "label": "UR3 + Wuji 1",
+     "base": "static/images/taxonomy/hammer/ur3_wuji1.webp",
+     "corners": [
+      [
+       34.57,
+       59.91
+      ],
+      [
+       65.25,
+       59.91
+      ],
+      [
+       66.32,
+       81.72
+      ],
+      [
+       33.5,
+       81.72
+      ]
+     ],
+     "rows": 3,
+     "cols": 5,
+     "tiles": [
+      {
+       "label": "Extension Type",
+       "cell": "X3Y2",
+       "at": [
+        13.42,
+        46.88
+       ]
+      },
+      {
+       "label": "Precision Disk",
+       "cell": "X2Y1",
+       "at": [
+        13.42,
+        93.12
+       ]
+      },
+      {
+       "label": "Ring",
+       "cell": "X3Y3",
+       "at": [
+        86.49,
+        46.88
+       ]
+      },
+      {
+       "label": "Precision Sphere",
+       "cell": "X3Y5",
+       "at": [
+        86.49,
+        93.12
+       ]
+      }
+     ],
+     "cells": {
+      "0,0": {
+       "name": "Ring",
+       "taxonomy": "31_Ring",
+       "img": "static/images/taxonomy/hammer/ur3_wuji1/X1Y1.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,1": {
+       "name": "Ring",
+       "taxonomy": "31_Ring",
+       "img": "static/images/taxonomy/hammer/ur3_wuji1/X1Y2.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,2": {
+       "name": "Ring",
+       "taxonomy": "31_Ring",
+       "img": "static/images/taxonomy/hammer/ur3_wuji1/X1Y3.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,3": {
+       "name": "Ring",
+       "taxonomy": "31_Ring",
+       "img": "static/images/taxonomy/hammer/ur3_wuji1/X1Y4.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,4": {
+       "name": "Precision Sphere",
+       "taxonomy": "13_Precision_Sphere",
+       "img": "static/images/taxonomy/hammer/ur3_wuji1/X1Y5.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,0": {
+       "name": "Precision Disk",
+       "taxonomy": "12_Precision_Disk",
+       "img": "static/images/taxonomy/hammer/ur3_wuji1/X2Y1.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "1,1": {
+       "name": "Precision Disk",
+       "taxonomy": "12_Precision_Disk",
+       "img": "static/images/taxonomy/hammer/ur3_wuji1/X2Y2.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,2": {
+       "name": "Ring",
+       "taxonomy": "31_Ring",
+       "img": "static/images/taxonomy/hammer/ur3_wuji1/X2Y3.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,3": {
+       "name": "Ring",
+       "taxonomy": "31_Ring",
+       "img": "static/images/taxonomy/hammer/ur3_wuji1/X2Y4.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,4": {
+       "name": "Precision Sphere",
+       "taxonomy": "13_Precision_Sphere",
+       "img": "static/images/taxonomy/hammer/ur3_wuji1/X2Y5.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,0": {
+       "name": "Extension Type",
+       "taxonomy": "18_Extensior_Type",
+       "img": "static/images/taxonomy/hammer/ur3_wuji1/X3Y1.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,1": {
+       "name": "Extension Type",
+       "taxonomy": "18_Extensior_Type",
+       "img": "static/images/taxonomy/hammer/ur3_wuji1/X3Y2.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "2,2": {
+       "name": "Ring",
+       "taxonomy": "31_Ring",
+       "img": "static/images/taxonomy/hammer/ur3_wuji1/X3Y3.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "2,3": {
+       "name": "Precision Sphere",
+       "taxonomy": "13_Precision_Sphere",
+       "img": "static/images/taxonomy/hammer/ur3_wuji1/X3Y4.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,4": {
+       "name": "Precision Sphere",
+       "taxonomy": "13_Precision_Sphere",
+       "img": "static/images/taxonomy/hammer/ur3_wuji1/X3Y5.webp",
+       "rep": true,
+       "zoomed": true
+      }
+     }
+    },
+    {
+     "key": "ur5e_sharpa",
+     "label": "UR5e + Sharpa",
+     "base": "static/images/taxonomy/hammer/ur5e_sharpa.webp",
+     "corners": [
+      [
+       34.88,
+       62.62
+      ],
+      [
+       64.93,
+       62.62
+      ],
+      [
+       66.02,
+       92.88
+      ],
+      [
+       33.8,
+       92.88
+      ]
+     ],
+     "rows": 3,
+     "cols": 5,
+     "tiles": [
+      {
+       "label": "Tripod",
+       "cell": "X1Y3",
+       "at": [
+        13.42,
+        46.88
+       ]
+      },
+      {
+       "label": "Extension Type",
+       "cell": "X2Y1",
+       "at": [
+        13.42,
+        93.12
+       ]
+      },
+      {
+       "label": "Small Diameter",
+       "cell": "X1Y5",
+       "at": [
+        86.49,
+        46.88
+       ]
+      },
+      {
+       "label": "Lateral",
+       "cell": "X3Y3",
+       "at": [
+        86.49,
+        93.12
+       ]
+      }
+     ],
+     "cells": {
+      "0,0": {
+       "name": "Extension Type",
+       "taxonomy": "18_Extensior_Type",
+       "img": "static/images/taxonomy/hammer/ur5e_sharpa/X1Y1.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,1": {
+       "name": "Tripod",
+       "taxonomy": "14_Tripod",
+       "img": "static/images/taxonomy/hammer/ur5e_sharpa/X1Y2.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,2": {
+       "name": "Tripod",
+       "taxonomy": "14_Tripod",
+       "img": "static/images/taxonomy/hammer/ur5e_sharpa/X1Y3.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "0,3": {
+       "name": "Small Diameter",
+       "taxonomy": "2_Small_Diameter",
+       "img": "static/images/taxonomy/hammer/ur5e_sharpa/X1Y4.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,4": {
+       "name": "Small Diameter",
+       "taxonomy": "2_Small_Diameter",
+       "img": "static/images/taxonomy/hammer/ur5e_sharpa/X1Y5.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "1,0": {
+       "name": "Extension Type",
+       "taxonomy": "18_Extensior_Type",
+       "img": "static/images/taxonomy/hammer/ur5e_sharpa/X2Y1.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "1,1": {
+       "name": "Small Diameter",
+       "taxonomy": "2_Small_Diameter",
+       "img": "static/images/taxonomy/hammer/ur5e_sharpa/X2Y2.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,2": {
+       "name": "Small Diameter",
+       "taxonomy": "2_Small_Diameter",
+       "img": "static/images/taxonomy/hammer/ur5e_sharpa/X2Y3.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,3": {
+       "name": "Lateral",
+       "taxonomy": "16_Lateral",
+       "img": "static/images/taxonomy/hammer/ur5e_sharpa/X2Y4.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,4": {
+       "name": "Tripod",
+       "taxonomy": "14_Tripod",
+       "img": "static/images/taxonomy/hammer/ur5e_sharpa/X2Y5.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,0": {
+       "name": "Tripod",
+       "taxonomy": "14_Tripod",
+       "img": "static/images/taxonomy/hammer/ur5e_sharpa/X3Y1.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,1": {
+       "name": "Tripod",
+       "taxonomy": "14_Tripod",
+       "img": "static/images/taxonomy/hammer/ur5e_sharpa/X3Y2.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,2": {
+       "name": "Lateral",
+       "taxonomy": "16_Lateral",
+       "img": "static/images/taxonomy/hammer/ur5e_sharpa/X3Y3.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "2,3": {
+       "name": "Lateral",
+       "taxonomy": "16_Lateral",
+       "img": "static/images/taxonomy/hammer/ur5e_sharpa/X3Y4.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,4": {
+       "name": "Lateral",
+       "taxonomy": "16_Lateral",
+       "img": "static/images/taxonomy/hammer/ur5e_sharpa/X3Y5.webp",
+       "rep": false,
+       "zoomed": false
+      }
+     }
+    },
+    {
+     "key": "ur5e_wuji2",
+     "label": "UR5e + Wuji 2",
+     "base": "static/images/taxonomy/hammer/ur5e_wuji2.webp",
+     "corners": [
+      [
+       36.85,
+       67.28
+      ],
+      [
+       62.96,
+       67.28
+      ],
+      [
+       63.78,
+       93.83
+      ],
+      [
+       36.03,
+       93.83
+      ]
+     ],
+     "rows": 3,
+     "cols": 5,
+     "tiles": [
+      {
+       "label": "Extension Type",
+       "cell": "X3Y3",
+       "at": [
+        13.42,
+        46.88
+       ]
+      },
+      {
+       "label": "Palmar",
+       "cell": "X3Y1",
+       "at": [
+        13.42,
+        93.12
+       ]
+      },
+      {
+       "label": "Ring",
+       "cell": "X2Y3",
+       "at": [
+        86.49,
+        46.88
+       ]
+      },
+      {
+       "label": "Tripod Variation",
+       "cell": "X3Y5",
+       "at": [
+        86.49,
+        93.12
+       ]
+      }
+     ],
+     "cells": {
+      "0,0": {
+       "name": "Extension Type",
+       "taxonomy": "18_Extensior_Type",
+       "img": "static/images/taxonomy/hammer/ur5e_wuji2/X1Y1.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,1": {
+       "name": "Palmar",
+       "taxonomy": "30_Palmar",
+       "img": "static/images/taxonomy/hammer/ur5e_wuji2/X1Y2.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,2": {
+       "name": "Palmar",
+       "taxonomy": "30_Palmar",
+       "img": "static/images/taxonomy/hammer/ur5e_wuji2/X1Y3.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,3": {
+       "name": "Tripod Variation",
+       "taxonomy": "21_Tripod_Variation",
+       "img": "static/images/taxonomy/hammer/ur5e_wuji2/X1Y4.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,4": {
+       "name": "Tripod Variation",
+       "taxonomy": "21_Tripod_Variation",
+       "img": "static/images/taxonomy/hammer/ur5e_wuji2/X1Y5.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,0": {
+       "name": "Palmar",
+       "taxonomy": "30_Palmar",
+       "img": "static/images/taxonomy/hammer/ur5e_wuji2/X2Y1.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,1": {
+       "name": "Palmar",
+       "taxonomy": "30_Palmar",
+       "img": "static/images/taxonomy/hammer/ur5e_wuji2/X2Y2.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,2": {
+       "name": "Ring",
+       "taxonomy": "31_Ring",
+       "img": "static/images/taxonomy/hammer/ur5e_wuji2/X2Y3.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "1,3": {
+       "name": "Tripod Variation",
+       "taxonomy": "21_Tripod_Variation",
+       "img": "static/images/taxonomy/hammer/ur5e_wuji2/X2Y4.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,4": {
+       "name": "Tripod Variation",
+       "taxonomy": "21_Tripod_Variation",
+       "img": "static/images/taxonomy/hammer/ur5e_wuji2/X2Y5.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,0": {
+       "name": "Palmar",
+       "taxonomy": "30_Palmar",
+       "img": "static/images/taxonomy/hammer/ur5e_wuji2/X3Y1.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "2,1": {
+       "name": "Tripod Variation",
+       "taxonomy": "21_Tripod_Variation",
+       "img": "static/images/taxonomy/hammer/ur5e_wuji2/X3Y2.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,2": {
+       "name": "Extension Type",
+       "taxonomy": "18_Extensior_Type",
+       "img": "static/images/taxonomy/hammer/ur5e_wuji2/X3Y3.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "2,3": {
+       "name": "Tripod Variation",
+       "taxonomy": "21_Tripod_Variation",
+       "img": "static/images/taxonomy/hammer/ur5e_wuji2/X3Y4.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,4": {
+       "name": "Tripod Variation",
+       "taxonomy": "21_Tripod_Variation",
+       "img": "static/images/taxonomy/hammer/ur5e_wuji2/X3Y5.webp",
+       "rep": true,
+       "zoomed": true
+      }
+     }
+    },
+    {
+     "key": "ur5e_allegro",
+     "label": "UR5e + Allegro",
+     "base": "static/images/taxonomy/hammer/ur5e_allegro.webp",
+     "corners": [
+      [
+       35.5,
+       64.16
+      ],
+      [
+       64.31,
+       64.16
+      ],
+      [
+       65.32,
+       93.17
+      ],
+      [
+       34.51,
+       93.17
+      ]
+     ],
+     "rows": 3,
+     "cols": 5,
+     "tiles": [
+      {
+       "label": "Extension Type",
+       "cell": "X2Y2",
+       "at": [
+        13.42,
+        46.88
+       ]
+      },
+      {
+       "label": "Fingertip Large",
+       "cell": "X3Y2",
+       "at": [
+        13.42,
+        93.12
+       ]
+      },
+      {
+       "label": "Power Disk",
+       "cell": "X2Y5",
+       "at": [
+        86.49,
+        93.12
+       ]
+      }
+     ],
+     "cells": {
+      "0,0": {
+       "name": "Power Disk",
+       "taxonomy": "10_Power_Disk",
+       "img": "static/images/taxonomy/hammer/ur5e_allegro/X1Y1.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,1": {
+       "name": "Power Disk",
+       "taxonomy": "10_Power_Disk",
+       "img": "static/images/taxonomy/hammer/ur5e_allegro/X1Y2.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,2": {
+       "name": "Power Disk",
+       "taxonomy": "10_Power_Disk",
+       "img": "static/images/taxonomy/hammer/ur5e_allegro/X1Y3.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,3": {
+       "name": "Power Disk",
+       "taxonomy": "10_Power_Disk",
+       "img": "static/images/taxonomy/hammer/ur5e_allegro/X1Y4.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,4": {
+       "name": "Power Disk",
+       "taxonomy": "10_Power_Disk",
+       "img": "static/images/taxonomy/hammer/ur5e_allegro/X1Y5.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,0": {
+       "name": "Extension Type",
+       "taxonomy": "18_Extension_Type",
+       "img": "static/images/taxonomy/hammer/ur5e_allegro/X2Y1.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,1": {
+       "name": "Extension Type",
+       "taxonomy": "18_Extension_Type",
+       "img": "static/images/taxonomy/hammer/ur5e_allegro/X2Y2.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "1,2": {
+       "name": "Extension Type",
+       "taxonomy": "18_Extension_Type",
+       "img": "static/images/taxonomy/hammer/ur5e_allegro/X2Y3.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,3": {
+       "name": "Extension Type",
+       "taxonomy": "18_Extension_Type",
+       "img": "static/images/taxonomy/hammer/ur5e_allegro/X2Y4.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,4": {
+       "name": "Power Disk",
+       "taxonomy": "10_Power_Disk",
+       "img": "static/images/taxonomy/hammer/ur5e_allegro/X2Y5.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "2,0": {
+       "name": "Fingertip Large",
+       "taxonomy": "fingertip_large",
+       "img": "static/images/taxonomy/hammer/ur5e_allegro/X3Y1.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,1": {
+       "name": "Fingertip Large",
+       "taxonomy": "fingertip_large",
+       "img": "static/images/taxonomy/hammer/ur5e_allegro/X3Y2.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "2,2": {
+       "name": "Power Disk",
+       "taxonomy": "10_Power_Disk",
+       "img": "static/images/taxonomy/hammer/ur5e_allegro/X3Y3.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,3": {
+       "name": "Power Disk",
+       "taxonomy": "10_Power_Disk",
+       "img": "static/images/taxonomy/hammer/ur5e_allegro/X3Y4.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,4": {
+       "name": "Power Disk",
+       "taxonomy": "10_Power_Disk",
+       "img": "static/images/taxonomy/hammer/ur5e_allegro/X3Y5.webp",
+       "rep": false,
+       "zoomed": false
+      }
+     }
+    }
+   ]
+  },
+  {
+   "key": "sweep",
+   "label": "Sweep",
+   "panels": [
+    {
+     "key": "ur3_wuji1",
+     "label": "UR3 + Wuji 1",
+     "base": "static/images/taxonomy/sweep/ur3_wuji1.webp",
+     "corners": [
+      [
+       35.21,
+       61.91
+      ],
+      [
+       64.61,
+       61.91
+      ],
+      [
+       65.58,
+       85.48
+      ],
+      [
+       34.25,
+       85.48
+      ]
+     ],
+     "rows": 3,
+     "cols": 5,
+     "tiles": [
+      {
+       "label": "Writing Tripod",
+       "cell": "X2Y1",
+       "at": [
+        13.42,
+        46.88
+       ]
+      },
+      {
+       "label": "Sphere 3 Finger",
+       "cell": "X3Y1",
+       "at": [
+        13.42,
+        93.12
+       ]
+      },
+      {
+       "label": "Ring",
+       "cell": "X1Y3",
+       "at": [
+        86.49,
+        46.88
+       ]
+      },
+      {
+       "label": "Inferior Pincer",
+       "cell": "X1Y5",
+       "at": [
+        86.49,
+        93.12
+       ]
+      }
+     ],
+     "cells": {
+      "0,0": {
+       "name": "Ring",
+       "taxonomy": "31_Ring",
+       "img": "static/images/taxonomy/sweep/ur3_wuji1/X1Y1.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,1": {
+       "name": "Ring",
+       "taxonomy": "31_Ring",
+       "img": "static/images/taxonomy/sweep/ur3_wuji1/X1Y2.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,2": {
+       "name": "Ring",
+       "taxonomy": "31_Ring",
+       "img": "static/images/taxonomy/sweep/ur3_wuji1/X1Y3.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "0,3": {
+       "name": "Inferior Pincer",
+       "taxonomy": "33_Inferior_Pincer",
+       "img": "static/images/taxonomy/sweep/ur3_wuji1/X1Y4.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,4": {
+       "name": "Inferior Pincer",
+       "taxonomy": "33_Inferior_Pincer",
+       "img": "static/images/taxonomy/sweep/ur3_wuji1/X1Y5.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "1,0": {
+       "name": "Writing Tripod",
+       "taxonomy": "20_Writing_Tripod",
+       "img": "static/images/taxonomy/sweep/ur3_wuji1/X2Y1.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "1,1": {
+       "name": "Ring",
+       "taxonomy": "31_Ring",
+       "img": "static/images/taxonomy/sweep/ur3_wuji1/X2Y2.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,2": {
+       "name": "Ring",
+       "taxonomy": "31_Ring",
+       "img": "static/images/taxonomy/sweep/ur3_wuji1/X2Y3.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,3": {
+       "name": "Sphere 3 Finger",
+       "taxonomy": "28_Sphere_3_Finger",
+       "img": "static/images/taxonomy/sweep/ur3_wuji1/X2Y4.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,4": {
+       "name": "Sphere 3 Finger",
+       "taxonomy": "28_Sphere_3_Finger",
+       "img": "static/images/taxonomy/sweep/ur3_wuji1/X2Y5.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,0": {
+       "name": "Sphere 3 Finger",
+       "taxonomy": "28_Sphere_3_Finger",
+       "img": "static/images/taxonomy/sweep/ur3_wuji1/X3Y1.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "2,1": {
+       "name": "Sphere 3 Finger",
+       "taxonomy": "28_Sphere_3_Finger",
+       "img": "static/images/taxonomy/sweep/ur3_wuji1/X3Y2.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,2": {
+       "name": "Sphere 3 Finger",
+       "taxonomy": "28_Sphere_3_Finger",
+       "img": "static/images/taxonomy/sweep/ur3_wuji1/X3Y3.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,3": {
+       "name": "Sphere 3 Finger",
+       "taxonomy": "28_Sphere_3_Finger",
+       "img": "static/images/taxonomy/sweep/ur3_wuji1/X3Y4.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,4": {
+       "name": "Sphere 3 Finger",
+       "taxonomy": "28_Sphere_3_Finger",
+       "img": "static/images/taxonomy/sweep/ur3_wuji1/X3Y5.webp",
+       "rep": false,
+       "zoomed": false
+      }
+     }
+    },
+    {
+     "key": "ur5e_sharpa",
+     "label": "UR5e + Sharpa",
+     "base": "static/images/taxonomy/sweep/ur5e_sharpa.webp",
+     "corners": [
+      [
+       36.19,
+       64.09
+      ],
+      [
+       63.63,
+       64.09
+      ],
+      [
+       64.58,
+       92.94
+      ],
+      [
+       35.25,
+       92.94
+      ]
+     ],
+     "rows": 3,
+     "cols": 5,
+     "tiles": [
+      {
+       "label": "Writing Tripod",
+       "cell": "X1Y2",
+       "at": [
+        13.42,
+        46.88
+       ]
+      },
+      {
+       "label": "Adduction Grip",
+       "cell": "X3Y1",
+       "at": [
+        13.42,
+        93.12
+       ]
+      },
+      {
+       "label": "Lateral",
+       "cell": "X3Y4",
+       "at": [
+        86.49,
+        93.12
+       ]
+      }
+     ],
+     "cells": {
+      "0,0": {
+       "name": "Writing Tripod",
+       "taxonomy": "20_Writing_Tripod",
+       "img": "static/images/taxonomy/sweep/ur5e_sharpa/X1Y1.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,1": {
+       "name": "Writing Tripod",
+       "taxonomy": "20_Writing_Tripod",
+       "img": "static/images/taxonomy/sweep/ur5e_sharpa/X1Y2.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "0,2": {
+       "name": "Adduction Grip",
+       "taxonomy": "23_Adduction_Grip",
+       "img": "static/images/taxonomy/sweep/ur5e_sharpa/X1Y3.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,3": {
+       "name": "Lateral",
+       "taxonomy": "16_Lateral",
+       "img": "static/images/taxonomy/sweep/ur5e_sharpa/X1Y4.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,4": {
+       "name": "Adduction Grip",
+       "taxonomy": "23_Adduction_Grip",
+       "img": "static/images/taxonomy/sweep/ur5e_sharpa/X1Y5.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,0": {
+       "name": "Adduction Grip",
+       "taxonomy": "23_Adduction_Grip",
+       "img": "static/images/taxonomy/sweep/ur5e_sharpa/X2Y1.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,1": {
+       "name": "Adduction Grip",
+       "taxonomy": "23_Adduction_Grip",
+       "img": "static/images/taxonomy/sweep/ur5e_sharpa/X2Y2.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,2": {
+       "name": "Adduction Grip",
+       "taxonomy": "23_Adduction_Grip",
+       "img": "static/images/taxonomy/sweep/ur5e_sharpa/X2Y3.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,3": {
+       "name": "Adduction Grip",
+       "taxonomy": "23_Adduction_Grip",
+       "img": "static/images/taxonomy/sweep/ur5e_sharpa/X2Y4.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,4": {
+       "name": "Adduction Grip",
+       "taxonomy": "23_Adduction_Grip",
+       "img": "static/images/taxonomy/sweep/ur5e_sharpa/X2Y5.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,0": {
+       "name": "Adduction Grip",
+       "taxonomy": "23_Adduction_Grip",
+       "img": "static/images/taxonomy/sweep/ur5e_sharpa/X3Y1.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "2,1": {
+       "name": "Lateral",
+       "taxonomy": "16_Lateral",
+       "img": "static/images/taxonomy/sweep/ur5e_sharpa/X3Y2.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,2": {
+       "name": "Lateral",
+       "taxonomy": "16_Lateral",
+       "img": "static/images/taxonomy/sweep/ur5e_sharpa/X3Y3.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,3": {
+       "name": "Lateral",
+       "taxonomy": "16_Lateral",
+       "img": "static/images/taxonomy/sweep/ur5e_sharpa/X3Y4.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "2,4": {
+       "name": "Adduction Grip",
+       "taxonomy": "23_Adduction_Grip",
+       "img": "static/images/taxonomy/sweep/ur5e_sharpa/X3Y5.webp",
+       "rep": false,
+       "zoomed": false
+      }
+     }
+    },
+    {
+     "key": "ur5e_wuji2",
+     "label": "UR5e + Wuji 2",
+     "base": "static/images/taxonomy/sweep/ur5e_wuji2.webp",
+     "corners": [
+      [
+       36.8,
+       65.55
+      ],
+      [
+       63.02,
+       65.55
+      ],
+      [
+       63.89,
+       93.2
+      ],
+      [
+       35.94,
+       93.2
+      ]
+     ],
+     "rows": 3,
+     "cols": 5,
+     "tiles": [
+      {
+       "label": "Prismatic 2 Finger",
+       "cell": "X1Y1",
+       "at": [
+        13.42,
+        46.88
+       ]
+      },
+      {
+       "label": "Lateral Tripod",
+       "cell": "X2Y2",
+       "at": [
+        13.42,
+        93.12
+       ]
+      },
+      {
+       "label": "Tripod Variation",
+       "cell": "X3Y3",
+       "at": [
+        86.49,
+        46.88
+       ]
+      },
+      {
+       "label": "Sphere 3 Finger",
+       "cell": "X3Y5",
+       "at": [
+        86.49,
+        93.12
+       ]
+      }
+     ],
+     "cells": {
+      "0,0": {
+       "name": "Prismatic 2 Finger",
+       "taxonomy": "8_Prismatic_2_Finger",
+       "img": "static/images/taxonomy/sweep/ur5e_wuji2/X1Y1.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "0,1": {
+       "name": "Lateral Tripod",
+       "taxonomy": "25_Lateral_Tripod",
+       "img": "static/images/taxonomy/sweep/ur5e_wuji2/X1Y2.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,2": {
+       "name": "Tripod Variation",
+       "taxonomy": "21_Tripod_Variation",
+       "img": "static/images/taxonomy/sweep/ur5e_wuji2/X1Y3.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,3": {
+       "name": "Tripod Variation",
+       "taxonomy": "21_Tripod_Variation",
+       "img": "static/images/taxonomy/sweep/ur5e_wuji2/X1Y4.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,4": {
+       "name": "Tripod Variation",
+       "taxonomy": "21_Tripod_Variation",
+       "img": "static/images/taxonomy/sweep/ur5e_wuji2/X1Y5.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,0": {
+       "name": "Prismatic 2 Finger",
+       "taxonomy": "8_Prismatic_2_Finger",
+       "img": "static/images/taxonomy/sweep/ur5e_wuji2/X2Y1.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,1": {
+       "name": "Lateral Tripod",
+       "taxonomy": "25_Lateral_Tripod",
+       "img": "static/images/taxonomy/sweep/ur5e_wuji2/X2Y2.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "1,2": {
+       "name": "Tripod Variation",
+       "taxonomy": "21_Tripod_Variation",
+       "img": "static/images/taxonomy/sweep/ur5e_wuji2/X2Y3.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,3": {
+       "name": "Tripod Variation",
+       "taxonomy": "21_Tripod_Variation",
+       "img": "static/images/taxonomy/sweep/ur5e_wuji2/X2Y4.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,4": {
+       "name": "Tripod Variation",
+       "taxonomy": "21_Tripod_Variation",
+       "img": "static/images/taxonomy/sweep/ur5e_wuji2/X2Y5.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,0": {
+       "name": "Lateral Tripod",
+       "taxonomy": "25_Lateral_Tripod",
+       "img": "static/images/taxonomy/sweep/ur5e_wuji2/X3Y1.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,1": {
+       "name": "Lateral Tripod",
+       "taxonomy": "25_Lateral_Tripod",
+       "img": "static/images/taxonomy/sweep/ur5e_wuji2/X3Y2.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,2": {
+       "name": "Tripod Variation",
+       "taxonomy": "21_Tripod_Variation",
+       "img": "static/images/taxonomy/sweep/ur5e_wuji2/X3Y3.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "2,3": {
+       "name": "Tripod Variation",
+       "taxonomy": "21_Tripod_Variation",
+       "img": "static/images/taxonomy/sweep/ur5e_wuji2/X3Y4.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,4": {
+       "name": "Sphere 3 Finger",
+       "taxonomy": "28_Sphere_3_Finger",
+       "img": "static/images/taxonomy/sweep/ur5e_wuji2/X3Y5.webp",
+       "rep": true,
+       "zoomed": true
+      }
+     }
+    },
+    {
+     "key": "ur5e_allegro",
+     "label": "UR5e + Allegro",
+     "base": "static/images/taxonomy/sweep/ur5e_allegro.webp",
+     "corners": [
+      [
+       36.88,
+       65.7
+      ],
+      [
+       62.94,
+       65.7
+      ],
+      [
+       63.79,
+       93.25
+      ],
+      [
+       36.02,
+       93.25
+      ]
+     ],
+     "rows": 3,
+     "cols": 5,
+     "tiles": [
+      {
+       "label": "Fingertip Small",
+       "cell": "X2Y3",
+       "at": [
+        13.42,
+        69.69
+       ]
+      },
+      {
+       "label": "Fingertip Mid",
+       "cell": "X1Y3",
+       "at": [
+        86.49,
+        69.69
+       ]
+      }
+     ],
+     "cells": {
+      "0,0": {
+       "name": "Fingertip Small",
+       "taxonomy": "fingertip_small",
+       "img": "static/images/taxonomy/sweep/ur5e_allegro/X1Y1.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,1": {
+       "name": "Fingertip Mid",
+       "taxonomy": "fingertip_mid",
+       "img": "static/images/taxonomy/sweep/ur5e_allegro/X1Y2.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,2": {
+       "name": "Fingertip Mid",
+       "taxonomy": "fingertip_mid",
+       "img": "static/images/taxonomy/sweep/ur5e_allegro/X1Y3.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "0,3": {
+       "name": "Fingertip Mid",
+       "taxonomy": "fingertip_mid",
+       "img": "static/images/taxonomy/sweep/ur5e_allegro/X1Y4.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "0,4": {
+       "name": "Fingertip Mid",
+       "taxonomy": "fingertip_mid",
+       "img": "static/images/taxonomy/sweep/ur5e_allegro/X1Y5.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,0": {
+       "name": "Fingertip Small",
+       "taxonomy": "fingertip_small",
+       "img": "static/images/taxonomy/sweep/ur5e_allegro/X2Y1.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,1": {
+       "name": "Fingertip Mid",
+       "taxonomy": "fingertip_mid",
+       "img": "static/images/taxonomy/sweep/ur5e_allegro/X2Y2.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,2": {
+       "name": "Fingertip Small",
+       "taxonomy": "fingertip_small",
+       "img": "static/images/taxonomy/sweep/ur5e_allegro/X2Y3.webp",
+       "rep": true,
+       "zoomed": true
+      },
+      "1,3": {
+       "name": "Fingertip Small",
+       "taxonomy": "fingertip_small",
+       "img": "static/images/taxonomy/sweep/ur5e_allegro/X2Y4.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "1,4": {
+       "name": "Fingertip Small",
+       "taxonomy": "fingertip_small",
+       "img": "static/images/taxonomy/sweep/ur5e_allegro/X2Y5.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,0": {
+       "name": "Fingertip Small",
+       "taxonomy": "fingertip_small",
+       "img": "static/images/taxonomy/sweep/ur5e_allegro/X3Y1.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,1": {
+       "name": "Fingertip Small",
+       "taxonomy": "fingertip_small",
+       "img": "static/images/taxonomy/sweep/ur5e_allegro/X3Y2.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,2": {
+       "name": "Fingertip Small",
+       "taxonomy": "fingertip_small",
+       "img": "static/images/taxonomy/sweep/ur5e_allegro/X3Y3.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,3": {
+       "name": "Fingertip Small",
+       "taxonomy": "fingertip_small",
+       "img": "static/images/taxonomy/sweep/ur5e_allegro/X3Y4.webp",
+       "rep": false,
+       "zoomed": false
+      },
+      "2,4": {
+       "name": "Fingertip Small",
+       "taxonomy": "fingertip_small",
+       "img": "static/images/taxonomy/sweep/ur5e_allegro/X3Y5.webp",
+       "rep": false,
+       "zoomed": false
+      }
+     }
+    }
+   ]
   }
  ]
 };
