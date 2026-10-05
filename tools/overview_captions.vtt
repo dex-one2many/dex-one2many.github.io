@@ -1,0 +1,150 @@
+WEBVTT
+
+1
+00:00:00.600 --> 00:00:07.929
+We introduce Dex-One2Many, a framework that learns generalizable dexterous manipulation from a single human video.
+
+2
+00:00:08.729 --> 00:00:13.129
+The only demonstration is a single human video of the task.
+
+3
+00:00:13.329 --> 00:00:21.929
+Instead of imitating the demonstrated motion, we extract the task structure, so poses, goals, and grasps may differ from the video.
+
+4
+00:00:22.229 --> 00:00:29.829
+The same task structure trains any dexterous hand; only the robot model and its grasp set change.
+
+5
+00:00:30.129 --> 00:00:39.329
+Policies are trained entirely in simulation and deployed zero-shot on a real robot. Here is how it works.
+
+6
+00:00:40.129 --> 00:00:44.700
+The input is a single human video of the task.
+
+7
+00:00:44.800 --> 00:00:55.081
+A vision-language model abstracts it into stage-wise scene graphs: which hand–object and object–object relations must hold, and in what order.
+
+8
+00:00:55.281 --> 00:01:00.408
+Object poses, goal poses, and grasps are left free.
+
+9
+00:01:00.538 --> 00:01:07.857
+Each stage graph serves as a generative constraint for sampling reset states; here, Stage 3.
+
+10
+00:01:07.957 --> 00:01:13.616
+First, the anchor object, the pot, is placed anywhere in the workspace.
+
+11
+00:01:13.716 --> 00:01:19.456
+Then Pikachu is sampled where the pre-inside predicate holds, near the pot.
+
+12
+00:01:19.516 --> 00:01:28.473
+For the grasp predicate, the hand is placed at one of many synthesized multi-finger grasps, each with a verified closing command.
+
+13
+00:01:28.573 --> 00:01:35.660
+Each sampled state is instantiated in simulation and kept only if it is collision-free and stable.
+
+14
+00:01:35.760 --> 00:01:45.917
+Repeating this yields many reset states from one graph: different pot positions, object poses, and grasps that all satisfy the same relations.
+
+15
+00:01:47.317 --> 00:01:57.689
+The same procedure is applied to every stage, from the empty-hand start to the goal, reproducing the video's graph sequence in simulation.
+
+16
+00:01:57.789 --> 00:02:03.340
+Ten thousand verified states per stage form the initial-state distribution.
+
+17
+00:02:04.980 --> 00:02:11.955
+The graph is embodiment-agnostic: only the robot model and its grasp set are swapped.
+
+18
+00:02:13.485 --> 00:02:18.386
+Four arm–hand embodiments share one task specification.
+
+19
+00:02:19.016 --> 00:02:27.442
+RL episodes start uniformly from the reset states of every stage, in tens of thousands of parallel environments.
+
+20
+00:02:27.472 --> 00:02:37.422
+For visualization, the environments are arranged in rows by the stage their episode starts from, Stage 4 at the top and Stage 0 at the bottom.
+
+21
+00:02:37.452 --> 00:02:41.551
+Training from stage-wise resets proceeds as follows.
+
+22
+00:02:41.581 --> 00:02:46.867
+With dense predicate rewards, the stages nearest the goal are learned first.
+
+23
+00:02:46.897 --> 00:02:52.586
+Success then propagates backward, since the later stages are already solved.
+
+24
+00:02:52.626 --> 00:02:58.673
+Eventually the full task is solved from the empty-hand start, stage 0.
+
+25
+00:02:58.713 --> 00:03:06.631
+In ablations, removing stage-wise resets drops success from over 90 % to about 16 %.
+
+26
+00:03:06.671 --> 00:03:12.861
+The same procedure trains all four embodiments; each learns the full task.
+
+27
+00:03:12.891 --> 00:03:17.463
+The trained policy completes the task from an empty hand.
+
+28
+00:03:19.663 --> 00:03:27.352
+We evaluate on 500 episodes per embodiment, with initial and goal positions sampled across the workspace.
+
+29
+00:03:27.492 --> 00:03:35.277
+No grasp is retargeted from the video; the policy adopts different grasp types depending on where the object is.
+
+30
+00:03:35.327 --> 00:03:44.044
+The other embodiments are evaluated the same way; across five tasks, the four average about 95 % success.
+
+31
+00:03:44.144 --> 00:03:50.874
+Each embodiment learns its own grasps for the same task structure, from the same single video.
+
+32
+00:03:50.962 --> 00:04:01.552
+In simulation, each task is learned from one human video for four arm–hand embodiments — only the robot model and its grasp set change.
+
+33
+00:04:01.552 --> 00:04:09.552
+Direct manipulation: grasp the object and move it to the target configuration.
+
+34
+00:04:09.552 --> 00:04:17.856
+Success rates over 500 episodes per task, with initial object positions sampled across the workspace.
+
+35
+00:04:17.856 --> 00:04:25.856
+Tool use: grasp a tool and act on another object — the same predicate rewards, no task-specific design.
+
+36
+00:04:25.856 --> 00:04:34.006
+Across five tasks, the four embodiments average 94.6–96.8 % success.
+
+37
+00:04:34.006 --> 00:04:46.679
+Zero-shot sim-to-real on UR3 + Wuji 1. On configurations never shown in the video: 60–85 % success, where the baselines stay at or below 15 %.
+

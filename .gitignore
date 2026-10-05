@@ -6,3 +6,7 @@ exp_figures_new/
 arxiv_dex_one2many.pdf
 
 .DS_Store
+
+# build_overview.py 의 미리보기 프레임
+tools/_probe/
+tools/_tts/
