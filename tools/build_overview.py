@@ -49,7 +49,8 @@ AUTHOR_LINES = [
     "Jusuk Lee¹*,  Sungha Kim¹*,  Yeonsoo Park¹*,  Jonguk Cheon¹,  Yoonkyo Jung²,  Yongjun You¹,",
     "H. Jin Kim¹,  Jia-Bin Huang²,  Furong Huang²,  Youngseok Jang³†,  Seungjae Lee²†",
 ]
-AFFIL_LINE = "¹ Seoul National University     ² University of Maryland, College Park     ³ KAIST"
+AFFIL_LINE = ("¹ Seoul National University     ² University of Maryland, College Park     "
+              "³ Korea Advanced Institute of Science and Technology")
 NOTE_LINE = "* Equal contribution     † Equal advising"
 
 # ----------------------------------------------------------------------------- teaser (static/videos/teaser.mp4)
