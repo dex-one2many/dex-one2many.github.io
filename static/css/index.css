@@ -229,6 +229,14 @@ section[id], header[id] { scroll-margin-top: var(--nav-h); }
 }
 .btn--ghost:hover { background: rgba(255, 255, 255, 0.22); color: #fff; }
 
+/* 어두운 영상 위의 흰 버튼 (히어로) */
+.btn--light {
+  background: #fff;
+  color: var(--text);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, .28);
+}
+.btn--light:hover { background: var(--accent); color: #fff; }
+
 /* 밝은 배경(본문) 위의 외곽선 버튼 */
 .btn--outline {
   background: #fff;
@@ -285,6 +293,15 @@ section[id], header[id] { scroll-margin-top: var(--nav-h); }
   margin: 0 auto;
   padding: calc(var(--nav-h) + 56px) clamp(20px, 5vw, 40px) 64px;
   text-align: center;
+}
+
+.hero__actions { margin-top: 56px; gap: 16px; }
+.hero__actions .btn { font-size: 1.25rem; padding: 15px 32px; }
+.hero__actions .btn svg { width: 22px; height: 22px; }
+@media (max-width: 640px) {
+  .hero__actions { margin-top: 36px; gap: 12px; }
+  .hero__actions .btn { font-size: 1.05rem; padding: 12px 22px; }
+  .hero__actions .btn svg { width: 18px; height: 18px; }
 }
 
 .hero__title {
