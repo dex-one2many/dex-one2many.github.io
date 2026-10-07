@@ -1,23 +1,26 @@
 #!/usr/bin/env python3
 """Build static/videos/overview.mp4 for the project page.
 
-    intro card (title, authors)
-  + hero teaser (static/videos/teaser.mp4, 31.5 s) with the abstract's sentences in the band
+    intro card (title, authors) over a dimmed montage of the five tasks
+  + contrast with existing methods (the flow of dex-one2many_overview.pdf): execution-level guidance from the
+    human video -> trained in simulation -> works in the demonstrated configuration -> fails in an unseen one
+    -> Dex-One2Many succeeds there -> key idea
   + FULLP_v5a_long_text.mp4 (3:35) with its small pill captions erased and a white caption band added below;
-    scenes whose caption is short are sped up (see READ_* / MAX_SPEED) so the video does not idle
+    scenes are re-timed to their narration (READ_* / MIN_SPEED / MAX_SPEED), and CUTS are left out
   + simulation results, one screen per task (human video + 4 embodiments)
   + real-robot results (UR3 + Wuji 1; the clips the page already has)
   + end card
 
 The canvas is 1920 x (1080 + BAND): the source frame on top, a white band with the subtitle below.
-Captions (text + timing) are the CAPTIONS / TEASER_CAPTIONS tables below; edit them and rebuild. The final cue
-sheet (output times, speeds) is written to tools/overview_captions.md and tools/overview_captions.vtt.
+Captions (text + timing) are the tables below; edit them and rebuild. The final cue sheet (output times, speeds)
+is written to tools/overview_captions.md and tools/overview_captions.vtt; tools/narrate.py reads the .vtt.
 
     python3 tools/build_overview.py cues                        # just the cue sheet / plan (no render)
     python3 tools/build_overview.py probe 5 20 100 160 200      # PNG of the output frame at these seconds -> tools/_probe/
     python3 tools/build_overview.py build [--fast] [--out PATH]  # full render (--fast = x264 preset medium)
 
-Needs ffmpeg on PATH, numpy, Pillow. The pikachu bundle is expected next to this repo (--bundle to change).
+Needs ffmpeg on PATH, numpy, Pillow. The pikachu bundle (with the baseline_*.mp4 clips in its root) is expected
+next to this repo (--bundle to change).
 """
 import argparse
 import json
@@ -38,42 +41,64 @@ FPS = 30
 WHITE = (255, 255, 255)
 INK = (28, 28, 28)
 GREY = (110, 110, 110)
+ACCENT = (37, 99, 235)      # the page's --accent (#2563eb)
 
 # ----------------------------------------------------------------------------- intro card
-INTRO_SECONDS, END_SECONDS = 8.0, 6.0      # intro grows to fit its narration (see intro_seconds)
+INTRO_SECONDS, END_SECONDS = 7.0, 6.0      # intro: at least; it grows to fit its narration
 INTRO_CAPTION = ("We introduce Dex-One2Many, a framework that learns generalizable dexterous manipulation "
                  "from a single human video.")
+INTRO_BG = ("teaser.mp4", 26.5)             # montage of the five tasks (hero teaser, from this second), dimmed
+INTRO_BG_ALPHA = 0.22                       # how much of the montage shows through the white
 TITLE = "Dex-One2Many"
 SUBTITLE = "Learning Dexterous Manipulation from a Single Human Demonstration"
 AUTHOR_LINES = [
     "Jusuk Lee¹*,  Sungha Kim¹*,  Yeonsoo Park¹*,  Jonguk Cheon¹,  Yoonkyo Jung²,  Yongjun You¹,",
     "H. Jin Kim¹,  Jia-Bin Huang²,  Furong Huang²,  Youngseok Jang³†,  Seungjae Lee²†",
 ]
-AFFIL_LINE = ("¹ Seoul National University     ² University of Maryland, College Park     "
-              "³ Korea Advanced Institute of Science and Technology")
+AFFIL_LINE = "¹ Seoul National University     ² University of Maryland, College Park     ³ KAIST"
 NOTE_LINE = "* Equal contribution     † Equal advising"
 
-# ----------------------------------------------------------------------------- teaser (static/videos/teaser.mp4)
-# Its own phases (s): 0-2 montage of the five tasks, 3-7 'One human video' (hammer), 8-13 'Many configurations not
-# shown in the video', 14-21 'Any dexterous hands' (Wuji 1/2, then Allegro/Sharpa), 22-31 zoom-out to the montage.
-# The band gives the idea in plain words, one line per phase.
-TEASER_SECONDS = 31.5
-TEASER_CAPTIONS = [
-    (0.40, 4.80, "The only demonstration is a single human video of the task."),
-    (5.00, 13.60, "Instead of imitating the demonstrated motion, we extract the task structure, "
-                  "so poses, goals, and grasps may differ from the video."),
-    (13.90, 21.50, "The same task structure trains any dexterous hand; only the robot model and its grasp set change."),
-    (21.80, 31.00, "Policies are trained entirely in simulation and deployed zero-shot on a real robot. "
-                   "Here is how it works."),
+# ----------------------------------------------------------------------------- contrast with existing methods
+# Screens, in order. `base` = minimum seconds; a screen lasts at least its narration (+ SCREEN_PAD).
+# kind clip: one clip (full-bleed 16:9, or a 4:3 crop centred on white); pipeline: three 4:3 panels with arrows;
+# card: a sentence on a white card (read by the narration, nothing in the band); seq: clips one after another.
+# Clip paths are relative to the bundle root (baseline_*.mp4) or to static/videos (the page's own clips).
+REAL43 = (1440, 1080, 240, 0)               # the real-robot recordings are 4:3 pillarboxed in 1920x1080
+CLIP_SPEED = 1.3                            # playback speed of the contrast clips
+CONTRAST = [
+    dict(kind="clip", src="baseline_motion_guidance.mp4", loop=True, base=4.5,
+         label="Existing methods  ·  human video",
+         caption="Existing methods use the human video as execution-level guidance: they track the hand and "
+                 "object motion in the video and train the robot to reproduce that exact trajectory."),
+    dict(kind="pipeline", base=6.6, title="Existing methods: reproduce the demonstrated motion",
+         caption="Trained in simulation and deployed zero-shot on the real robot, such a policy works "
+                 "in the configuration shown in the video."),
+    dict(kind="card", base=2.5, text="What if the configuration changes?"),
+    dict(kind="clip", src="baseline_fail.mp4", seek=7.0, crop=REAL43, base=6.0,
+         label="Existing method  ·  unseen configuration",
+         caption="With the object placed differently, the demonstrated trajectory no longer fits, "
+                 "and the policy fails."),
+    dict(kind="card", base=4.0,
+         text="To handle configurations beyond the ones shown in the video,\nwe propose Dex-One2Many."),
+    # side by side: the failing existing method (looping) next to ours, with big labels
+    dict(kind="compare", base=9.0, title="Unseen configurations",
+         left=dict(src="baseline_fail.mp4", seek=7.0, crop=REAL43, loop=True, label="Existing method"),
+         right=dict(srcs=["one2many_config_1.mp4", "one2many_config_2.mp4"], label="Dex-One2Many"),
+         caption="Trained from the same single human video, Dex-One2Many completes the task "
+                 "in configurations the video never showed."),
+    dict(kind="card", base=4.5,
+         text="Key idea: abstract the video into stage-wise scene graphs,\nand let RL learn how to act.",
+         say="Our key idea is to abstract the video into stage-wise scene graphs, and let RL learn how to act."),
 ]
 
 # ----------------------------------------------------------------------------- body captions (body source time, s)
 # Windows of #4-#32 = the fade-in start / fade-out end of the pill captions of FULLP_v5a_long (tts_script.md),
 # so each subtitle sits exactly on the scene it describes. The first three cover Part 2, which had no caption.
 CAPTIONS = [
-    (0.30, 4.60, "The input is a single human video of the task."),
-    (4.70, 12.40, "A vision-language model abstracts it into stage-wise scene graphs: "
-                  "which hand–object and object–object relations must hold, and in what order."),
+    (0.30, 3.20, "The input is a single human video of the task."),
+    (3.40, 12.40, "A vision-language model abstracts the video into one scene graph per stage. Each edge is a "
+                  "predicate, a hand–object or object–object relation such as grasp or inside; the stage sequence "
+                  "gives their order."),
     (12.60, 15.90, "Object poses, goal poses, and grasps are left free."),
     # M2: Stage-3 reset generation
     (16.03, 22.27, "Each stage graph serves as a generative constraint for sampling reset states; here, Stage 3."),
@@ -118,7 +143,7 @@ CAPTIONS = [
 # to the part that remains (dropped if less than 0.5 s is left). A short white dip hides each cut.
 CUTS = [(169.60, 203.55)]   # from the end of the Sharpa representatives (before its mosaic forms) to the UR3 mosaic
 
-# Speed-up rule for the body: a caption needs READ_BASE + words / READ_WPS seconds on screen; if its window in the
+# Speed rule for the body: a caption needs READ_BASE + words / READ_WPS seconds on screen; if its window in the
 # source is longer, that window plays faster (frames are skipped), up to MAX_SPEED. Gaps between captions play at 1x.
 # With a narration (tools/narrate.py synth -> tools/_tts/durations.json) a caption needs at least its clip + NARR_PAD;
 # a scene whose narration is longer than its source window is slowed down (frames repeat), down to MIN_SPEED.
@@ -157,18 +182,23 @@ SIM_TASKS = [
     ("sweep", "Sweep", "tool use", "sim/sweep_human.mp4", (98.0, 96.6, 97.0, 100.0),
      "Across five tasks, the four embodiments average 94.6–96.8 % success."),
 ]
-SIM_SECONDS = 8.0          # per task, at least; the 16 s clips finish the task by ~5 s and then hold
+SIM_SECONDS = 7.0          # per task, at least; the 16 s clips finish the task by ~5 s and then hold
 REAL_TASKS = [("Doll", ["one2many_config_1.mp4", "one2many_config_2.mp4"]),
               ("Can", ["real/can_1.mp4", "real/can_2.mp4"]),
               ("Stamp", ["real/stamp_1.mp4", "real/stamp_2.mp4"])]
-REAL_SECONDS = 9.0         # at least
+REAL_SECONDS = 8.0         # at least
 REAL_CAPTION = ("Zero-shot sim-to-real on UR3 + Wuji 1. On configurations never shown in the video: "
                 "60–85 % success, where the baselines stay at or below 15 %.")
 SCREEN_PAD = 0.8           # a fixed screen lasts at least its narration + this (narrate.py leaves 0.3 s between clips)
 
 
+def narration_durations():
+    p = HERE / "_tts" / "durations.json"
+    return json.loads(p.read_text()) if p.exists() else {}
+
+
 def screen_seconds(base, caption):
-    """Length of a fixed screen (intro, sim task, real): at least `base`, and long enough for its narration."""
+    """Length of a fixed screen: at least `base`, and long enough for its narration."""
     return max(base, narration_durations().get(caption, 0.0) + SCREEN_PAD)
 
 
@@ -182,6 +212,15 @@ def sim_seconds(caption):
 
 def real_seconds():
     return screen_seconds(REAL_SECONDS, REAL_CAPTION)
+
+
+def spoken(screen):
+    """The narration line of a contrast screen (`say` if given, else the band caption, else the card's text)."""
+    return screen.get("say") or screen.get("caption") or screen["text"].replace("\n", " ")
+
+
+def contrast_seconds(screen):
+    return screen_seconds(screen["base"], spoken(screen))
 
 
 # ----------------------------------------------------------------------------- helpers
@@ -246,14 +285,6 @@ def fade(t, t0, t1, ramp=0.25):
     return max(0.0, min(1.0, (t - t0) / ramp, (t1 - t) / ramp))
 
 
-def caption_at(captions, t):
-    for t0, t1, s in captions:
-        al = fade(t, t0, t1)
-        if al > 0:
-            return s, al
-    return None, 0.0
-
-
 def put_band(canvas, text, alpha):
     if alpha <= 0:
         return
@@ -263,14 +294,35 @@ def put_band(canvas, text, alpha):
     canvas[H0:] = (band * (1 - a) + rgb * a).astype(np.uint8)
 
 
+def overlay(frame, rgba, x, y):
+    """Alpha-composite an RGBA (h, w, 4) uint8 image onto frame at (x, y), in place."""
+    h, w = rgba.shape[:2]
+    a = rgba[..., 3:4].astype(np.float32) / 255.0
+    reg = frame[y:y + h, x:x + w].astype(np.float32)
+    frame[y:y + h, x:x + w] = (reg * (1 - a) + rgba[..., :3].astype(np.float32) * a).astype(np.uint8)
+
+
+def label_box(text, size=30):
+    """A small white pill with a label, as an RGBA array (for a corner of a clip)."""
+    f = font(size, bold=True)
+    tw = int(f.getlength(text))
+    im = Image.new("RGBA", (tw + 44, size + 26), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    d.rounded_rectangle((0, 0, tw + 43, size + 25), radius=14, fill=(255, 255, 255, 225))
+    d.text((22, 13), text, font=f, fill=INK + (255,))
+    return np.asarray(im)
+
+
 class Clip:
     """Frames of a video through an ffmpeg rawvideo pipe; after the end, the last frame is held (or looped)."""
 
-    def __init__(self, path, size=None, fps=FPS, speed=1.0, seek=None, loop=False):
+    def __init__(self, path, size=None, fps=FPS, speed=1.0, seek=None, loop=False, crop=None):
         self.w, self.h = size or probe_size(path)
         vf = []
         if speed != 1.0:
             vf.append(f"setpts={1 / speed:.6f}*PTS")
+        if crop:
+            vf.append("crop=%d:%d:%d:%d" % crop)
         if size:
             vf.append(f"scale={self.w}:{self.h}")
         vf.append(f"fps={fps}")
@@ -281,6 +333,7 @@ class Clip:
         self.cmd, self.loop = cmd, loop
         self._open()
         self.last = None
+        self.ended = False
 
     def _open(self):
         self.p = subprocess.Popen(self.cmd, stdout=subprocess.PIPE, bufsize=self.w * self.h * 3 * 4)
@@ -296,6 +349,7 @@ class Clip:
             if len(buf) < n:
                 if self.last is None:
                     raise RuntimeError(f"no frames from {self.cmd}")
+                self.ended = True
                 return self.last
         self.last = np.frombuffer(buf, np.uint8).reshape(self.h, self.w, 3)
         return self.last
@@ -323,9 +377,15 @@ def probe_size(path):
     return int(w), int(h)
 
 
-def card(title, lines, title_size=120, gap=36):
-    """A white 1920x1080 card: big bold title, then (size, text[, color, extra_gap]) lines; returns RGB array."""
-    im = Image.new("RGB", (W, H0), WHITE)
+def clip_source(name):
+    """A contrast clip: the page's own clip if it exists there, else one from the bundle root."""
+    p = VIDEOS / name
+    return p if p.exists() else BUNDLE / name
+
+
+def card(title, lines, title_size=120, gap=36, bg=None):
+    """A white 1920x1080 card (or `bg`): big bold title, then (size, text[, color, extra_gap]) lines."""
+    im = Image.fromarray(bg) if bg is not None else Image.new("RGB", (W, H0), WHITE)
     d = ImageDraw.Draw(im)
     ft = font(title_size, bold=True)
     block = title_size + gap + sum(ln[0] + 18 + (ln[3] if len(ln) > 3 else 0) for ln in lines)
@@ -341,6 +401,20 @@ def card(title, lines, title_size=120, gap=36):
     return np.asarray(im)
 
 
+def text_card(text, size=56):
+    """A white card with one or two centred bold lines ('\\n' separated)."""
+    im = Image.new("RGB", (W, H0), WHITE)
+    d = ImageDraw.Draw(im)
+    f = font(size, bold=True)
+    lines = text.split("\n")
+    lh = size + 22
+    y = H0 / 2 - lh * (len(lines) - 1) / 2
+    for ln in lines:
+        d.text((W / 2, y), ln, font=f, fill=INK, anchor="mm")
+        y += lh
+    return np.asarray(im)
+
+
 def blend_white(frame, alpha):
     """alpha 1 = frame, 0 = white."""
     if alpha >= 1:
@@ -348,12 +422,11 @@ def blend_white(frame, alpha):
     return (frame.astype(np.float32) * alpha + 255 * (1 - alpha)).astype(np.uint8)
 
 
-# ----------------------------------------------------------------------------- body plan (speed-up)
-def narration_durations():
-    p = HERE / "_tts" / "durations.json"
-    return json.loads(p.read_text()) if p.exists() else {}
+def edge_fade(t, dur, ramp=0.3):
+    return min(1.0, t / ramp, (dur - t) / ramp)
 
 
+# ----------------------------------------------------------------------------- body plan (re-timing, cuts)
 def kept_intervals():
     """The body minus CUTS, as [(t0, t1)]."""
     iv, cur = [], 0.0
@@ -423,26 +496,132 @@ def body_cues():
 
 # ----------------------------------------------------------------------------- segments: each yields (frame1080, band_text, band_alpha)
 def seg_intro():
-    bg = card(TITLE, [(48, SUBTITLE), (34, AUTHOR_LINES[0], INK, 30), (34, AUTHOR_LINES[1], INK),
-                      (30, AFFIL_LINE, GREY, 16), (28, NOTE_LINE, GREY)], title_size=110)
+    bg_clip = Clip(VIDEOS / INTRO_BG[0], (W, H0), seek=INTRO_BG[1], loop=True)
     dur = intro_seconds()
     n = round(dur * FPS)
+    lines = [(48, SUBTITLE), (34, AUTHOR_LINES[0], INK, 30), (34, AUTHOR_LINES[1], INK),
+             (30, AFFIL_LINE, GREY, 16), (28, NOTE_LINE, GREY)]
     for i in range(n):
         t = i / FPS
+        bg = blend_white(next(bg_clip), INTRO_BG_ALPHA)
+        fr = card(TITLE, lines, title_size=110, bg=bg)
         a = min(1.0, t / 0.5, (dur - t) / 0.4)
-        yield blend_white(bg, a), INTRO_CAPTION, fade(t, 0.6, dur - 0.4)
+        yield blend_white(fr, a), INTRO_CAPTION, fade(t, 0.6, dur - 0.4)
+    bg_clip.close()
 
 
-def seg_teaser():
-    clip = Clip(VIDEOS / "teaser.mp4", (W, H0))
-    n = round(TEASER_SECONDS * FPS)
-    for i in range(n):
-        t = i / FPS
-        fr = next(clip)
-        a = min(1.0, t / 0.4, (TEASER_SECONDS - t) / 0.5)
-        cap, alpha = caption_at(TEASER_CAPTIONS, t)
-        yield blend_white(fr, a), cap, alpha
-    clip.close()
+def place(fr, img, x, y):
+    fr[y:y + img.shape[0], x:x + img.shape[1]] = img
+
+
+def seg_contrast(screens=None):
+    for sc in (screens or CONTRAST):
+        dur = contrast_seconds(sc)
+        n = round(dur * FPS)
+        cap = sc.get("caption")
+        if sc["kind"] == "card":
+            bg = text_card(sc["text"])
+            for i in range(n):
+                t = i / FPS
+                yield blend_white(bg, edge_fade(t, dur)), None, 0.0
+            continue
+        if sc["kind"] == "clip":
+            crop = sc.get("crop")
+            size = (1440, 1080) if crop else (W, H0)
+            clip = Clip(clip_source(sc["src"]), size, speed=CLIP_SPEED, seek=sc.get("seek"), crop=crop,
+                        loop=sc.get("loop", False))
+            x0 = (W - size[0]) // 2
+            lab = label_box(sc["label"])
+            for i in range(n):
+                t = i / FPS
+                fr = np.full((H0, W, 3), 255, np.uint8)
+                place(fr, next(clip), x0, 0)
+                overlay(fr, lab, x0 + 36, 30)
+                yield blend_white(fr, edge_fade(t, dur)), cap, fade(t, 0.0, dur)
+            clip.close()
+            continue
+        if sc["kind"] == "seq":
+            size = (1280, 960)
+            x0, y0 = (W - size[0]) // 2, (H0 - size[1]) // 2
+            clips = [Clip(clip_source(s), size, speed=CLIP_SPEED) for s in sc["srcs"]]
+            lab = label_box(sc["label"])
+            k = 0
+            for i in range(n):
+                t = i / FPS
+                fr = np.full((H0, W, 3), 255, np.uint8)
+                img = next(clips[k])
+                if clips[k].ended and k + 1 < len(clips):      # the next clip starts when this one ends
+                    k += 1
+                    img = next(clips[k])
+                place(fr, img, x0, y0)
+                overlay(fr, lab, x0 + 36, y0 + 30)
+                yield blend_white(fr, edge_fade(t, dur)), cap, fade(t, 0.0, dur)
+            for c in clips:
+                c.close()
+            continue
+        if sc["kind"] == "compare":
+            pw, ph, gap = 900, 675, 60
+            xs = [30, 30 + pw + gap]
+            y0 = 190
+            left, right = sc["left"], sc["right"]
+            lclip = Clip(clip_source(left["src"]), (pw, ph), speed=CLIP_SPEED, seek=left.get("seek"),
+                         crop=left.get("crop"), loop=left.get("loop", False))
+            rclips = [Clip(clip_source(s), (pw, ph), speed=CLIP_SPEED) for s in right["srcs"]]
+            im = Image.new("RGB", (W, H0), WHITE)
+            d = ImageDraw.Draw(im)
+            d.text((W / 2, 56), sc["title"], font=font(46, bold=True), fill=INK, anchor="mm")
+            f = font(46, bold=True)
+            for x, name, color in zip(xs, (left["label"], right["label"]), (GREY, ACCENT)):
+                tw = f.getlength(name)
+                cx, cy = x + pw / 2, 135
+                d.rounded_rectangle((cx - tw / 2 - 30, cy - 36, cx + tw / 2 + 30, cy + 36), radius=36, fill=color)
+                d.text((cx, cy), name, font=f, fill=WHITE, anchor="mm")
+            bg = np.asarray(im).copy()
+            k = 0
+            for i in range(n):
+                t = i / FPS
+                fr = bg.copy()
+                place(fr, next(lclip), xs[0], y0)
+                img = next(rclips[k])
+                if rclips[k].ended and k + 1 < len(rclips):
+                    k += 1
+                    img = next(rclips[k])
+                place(fr, img, xs[1], y0)
+                yield blend_white(fr, edge_fade(t, dur)), cap, fade(t, 0.0, dur)
+            for c in [lclip] + rclips:
+                c.close()
+            continue
+        if sc["kind"] == "pipeline":
+            pw, ph, gap = 580, 435, 60
+            xs = [30, 30 + pw + gap, 30 + 2 * (pw + gap)]
+            y0 = (H0 - ph) // 2 - 20
+            panels = [
+                Clip(clip_source("baseline_motion_guidance.mp4"), (pw, ph), speed=CLIP_SPEED,
+                     crop=(1440, 1080, 240, 0), loop=True),
+                Clip(clip_source("baseline_train_sim.mp4"), (pw, ph), speed=CLIP_SPEED, crop=(960, 720, 160, 0)),
+                Clip(clip_source("baseline_deploy_real.mp4"), (pw, ph), speed=CLIP_SPEED, seek=10.5, crop=REAL43),
+            ]
+            names = ["Human video", "Trained in simulation", "Zero-shot deployment (seen configuration)"]
+            im = Image.new("RGB", (W, H0), WHITE)
+            d = ImageDraw.Draw(im)
+            d.text((W / 2, 70), sc["title"], font=font(46, bold=True), fill=INK, anchor="mm")
+            for x, name in zip(xs, names):
+                d.text((x + pw / 2, y0 + ph + 34), name, font=font(30), fill=INK, anchor="mm")
+            for x in xs[:2]:                                     # arrows between the panels
+                ax0, ax1, ay = x + pw + 10, x + pw + gap - 10, y0 + ph / 2
+                d.line((ax0, ay, ax1 - 14, ay), fill=INK, width=5)
+                d.polygon([(ax1, ay), (ax1 - 18, ay - 11), (ax1 - 18, ay + 11)], fill=INK)
+            bg = np.asarray(im).copy()
+            for i in range(n):
+                t = i / FPS
+                fr = bg.copy()
+                for x, c in zip(xs, panels):
+                    place(fr, next(c), x, y0)
+                yield blend_white(fr, edge_fade(t, dur)), cap, fade(t, 0.0, dur)
+            for c in panels:
+                c.close()
+            continue
+        raise ValueError(sc["kind"])
 
 
 def pill_boxes():
@@ -524,8 +703,7 @@ def seg_sim(tasks=None):
             for (x, y), c in zip(cells, clips):
                 fr[y:y + ch, x:x + cw] = next(c)
             t = i / FPS
-            a = min(1.0, t / 0.3, (dur - t) / 0.3)
-            yield blend_white(fr, a), caption, fade(t, 0.0, dur)
+            yield blend_white(fr, edge_fade(t, dur)), caption, fade(t, 0.0, dur)
         for c in clips + [hclip]:
             c.close()
 
@@ -550,8 +728,7 @@ def seg_real():
                 y = top + r * (ch + gap)
                 fr[y:y + ch, x:x + cw] = next(c)
         t = i / FPS
-        a = min(1.0, t / 0.3, (dur - t) / 0.3)
-        yield blend_white(fr, a), REAL_CAPTION, fade(t, 0.0, dur)
+        yield blend_white(fr, edge_fade(t, dur)), REAL_CAPTION, fade(t, 0.0, dur)
     for col in clips:
         for c in col:
             c.close()
@@ -569,7 +746,7 @@ def seg_end():
 
 def timeline(plan):
     yield from seg_intro()
-    yield from seg_teaser()
+    yield from seg_contrast()
     yield from seg_body(plan)
     yield from seg_sim()
     yield from seg_real()
@@ -593,9 +770,12 @@ def ts(x, sep="."):
 
 def write_cues(path_vtt, path_md, body_out):
     cues = [(0.6, intro_seconds() - 0.4, INTRO_CAPTION, 1.0, intro_seconds())]
-    off = intro_seconds()
-    cues += [(t0 + off, t1 + off, s, 1.0, t1 - t0) for t0, t1, s in TEASER_CAPTIONS]
-    off += TEASER_SECONDS
+    t = intro_seconds()
+    for sc in CONTRAST:
+        d = contrast_seconds(sc)
+        cues.append((t, t + d, spoken(sc), 1.0, d))
+        t += d
+    off = t
     cues += [(a + off, b + off, s, sp, src) for a, b, s, sp, src in body_cues()]
     t = off + body_out
     for *_, caption in SIM_TASKS:
@@ -610,9 +790,10 @@ def write_cues(path_vtt, path_md, body_out):
             f.write(f"{i}\n{ts(a)} --> {ts(b)}\n{s}\n\n")
     with open(path_md, "w") as f:
         f.write("# overview.mp4 · caption cue sheet\n\nTimes are in the final video (intro card "
-                f"{intro_seconds():.1f} s, teaser {TEASER_SECONDS:.1f} s, body {body_out:.1f} s, then the results). "
+                f"{intro_seconds():.1f} s, contrast {sum(contrast_seconds(s) for s in CONTRAST):.1f} s, "
+                f"body {body_out:.1f} s, then the results). "
                 f"A body scene plays at `speed` x when its caption needs less time than the source window "
-                f"(need = {READ_BASE} s + words / {READ_WPS}; max {MAX_SPEED}x). "
+                f"(need = {READ_BASE} s + words / {READ_WPS}; {MIN_SPEED}-{MAX_SPEED}x). "
                 "`TTS s` = words / 2.5, the narration time if one is added.\n\n"
                 "| # | start | end | shown s | speed | source s | words | TTS s | caption |\n"
                 "|---|---|---|---|---|---|---|---|---|\n")
@@ -624,7 +805,7 @@ def write_cues(path_vtt, path_md, body_out):
 
 # ----------------------------------------------------------------------------- main
 def main():
-    global BODY_TEXT, BODY_NOTEXT, BODY_SECONDS, VIDEOS, FONTS_DIR
+    global BODY_TEXT, BODY_NOTEXT, BODY_SECONDS, VIDEOS, FONTS_DIR, BUNDLE
     ap = argparse.ArgumentParser()
     ap.add_argument("mode", choices=["probe", "build", "cues"])
     ap.add_argument("times", nargs="*", type=float, help="probe: output-timeline seconds")
@@ -634,24 +815,26 @@ def main():
     ap.add_argument("--crf", type=int, default=19)
     args = ap.parse_args()
 
-    bundle = Path(args.bundle)
-    long_dir = bundle / "outputs/project_video/pikachu_in_pot/part3/v4/FULLP_v5a_long"
+    BUNDLE = Path(args.bundle)
+    long_dir = BUNDLE / "outputs/project_video/pikachu_in_pot/part3/v4/FULLP_v5a_long"
     BODY_TEXT, BODY_NOTEXT = long_dir / "FULLP_v5a_long_text.mp4", long_dir / "FULLP_v5a_long_notext.mp4"
     BODY_SECONDS = 6447 / FPS
     VIDEOS = PAGE / "static/videos"
-    FONTS_DIR = bundle / "scripts/project_video/assets/fonts"
-    for p in (BODY_TEXT, BODY_NOTEXT, FONTS_DIR / "NimbusSans-Regular.otf"):
+    FONTS_DIR = BUNDLE / "scripts/project_video/assets/fonts"
+    for p in (BODY_TEXT, BODY_NOTEXT, FONTS_DIR / "NimbusSans-Regular.otf", VIDEOS / INTRO_BG[0],
+              BUNDLE / "baseline_fail.mp4"):
         assert p.exists(), p
 
     plan = body_plan()
     body_out = len(plan) / FPS
-    total = (intro_seconds() + TEASER_SECONDS + body_out + sum(sim_seconds(c) for *_, c in SIM_TASKS)
+    contrast_out = sum(contrast_seconds(s) for s in CONTRAST)
+    total = (intro_seconds() + contrast_out + body_out + sum(sim_seconds(c) for *_, c in SIM_TASKS)
              + real_seconds() + END_SECONDS)
     vtt, md = HERE / "overview_captions.vtt", HERE / "overview_captions.md"
     write_cues(vtt, md, body_out)
     sped = [(s, sp, src) for _, _, s, sp, src in body_cues() if abs(sp - 1.0) > 0.005]
-    print(f"body {BODY_SECONDS:.1f} s -> {body_out:.1f} s ({len(sped)} of {len(CAPTIONS)} captions re-timed); "
-          f"total {total:.1f} s = {ts(total)[3:8]}")
+    print(f"intro {intro_seconds():.1f} s, contrast {contrast_out:.1f} s, body {BODY_SECONDS:.1f} -> {body_out:.1f} s "
+          f"({len(sped)} of {len(CAPTIONS)} captions re-timed); total {total:.1f} s = {ts(total)[3:8]}")
     if args.mode == "cues":
         for s, sp, src in sped:
             print(f"  {sp:.2f}x  {src:5.1f} s -> {src / sp:4.1f} s  {s}")
@@ -661,9 +844,13 @@ def main():
     if args.mode == "probe":
         out = HERE / "_probe"
         out.mkdir(exist_ok=True)
-        b0 = intro_seconds() + TEASER_SECONDS
-        bounds = [("intro", 0, intro_seconds()), ("teaser", intro_seconds(), b0), ("body", b0, b0 + body_out)]
-        t = b0 + body_out
+        bounds = [("intro", 0, intro_seconds())]
+        t = intro_seconds()
+        for j, sc in enumerate(CONTRAST):
+            bounds.append((f"contrast{j}", t, t + contrast_seconds(sc)))
+            t += contrast_seconds(sc)
+        bounds.append(("body", t, t + body_out))
+        t += body_out
         for key, *_, caption in SIM_TASKS:
             bounds.append((f"sim_{key}", t, t + sim_seconds(caption)))
             t += sim_seconds(caption)
@@ -675,11 +862,13 @@ def main():
             k = round((tt - a) * FPS)
             if name == "body":
                 gen = seg_body(plan, start=k, stop=k + 1)
-            else:                                   # cards / outro: run the segment up to that frame
+            else:                                   # cards / screens: run the segment up to that frame
                 if name.startswith("sim_"):
                     gen = seg_sim([x for x in SIM_TASKS if x[0] == name[4:]])
+                elif name.startswith("contrast"):
+                    gen = seg_contrast([CONTRAST[int(name[8:])]])
                 else:
-                    gen = {"intro": seg_intro, "teaser": seg_teaser, "real": seg_real, "end": seg_end}[name]()
+                    gen = {"intro": seg_intro, "real": seg_real, "end": seg_end}[name]()
                 for _ in range(k):
                     next(gen)
             fr, cap, al = next(gen)
