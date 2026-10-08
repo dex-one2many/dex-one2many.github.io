@@ -799,25 +799,126 @@ figcaption,
 }
 
 /* ---------- Results: 인터랙티브 grasp taxonomy ---------- */
+/* 클릭 전: 보드만 가운데. 클릭하면 .is-open → 오른쪽 열이 0 → 1fr 로 자라며 패널이 밀려 들어옴 */
 .taxo {
+  position: relative; /* #taxo-peek 의 기준 */
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(300px, 1fr);
-  gap: 24px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0fr);
+  column-gap: 0;
   align-items: start;
+  transition: grid-template-columns .5s var(--ease), column-gap .5s var(--ease);
+}
+.taxo.is-open { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); column-gap: 24px; }
+
+/* 보드 위 사용법 애니메이션 (SVG + 두 단계 문구, 한 바퀴 5.2 s; 섹션이 보이면 약 세 바퀴 돌고 멈춤) */
+.taxo__how {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 16px;
+  padding: 8px 24px 8px 18px;
+  border-radius: var(--radius-lg);
+  background: #fff;
+  border: 1px solid var(--border);
+}
+.taxo__how-anim { width: 150px; height: auto; flex: none; overflow: visible; }
+.taxo__how-steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 6px;
+  font-size: .95rem;
+  line-height: 1.3;
+  color: var(--text-secondary);
+}
+.taxo__how-step { display: flex; align-items: center; gap: 10px; }
+.taxo__how-step b { color: var(--text); font-weight: 700; }
+.taxo__how-num {
+  flex: none;
+  width: 22px; height: 22px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: .75rem;
+  font-weight: 700;
+}
+.taxo__how-touch,
+.taxo__how-anim .hw-finger { display: none; }
+@media (hover: none) and (pointer: coarse) { /* 터치 기기: 화살표 커서 대신 손가락, "Tap" 문구 */
+  .taxo__how-mouse,
+  .taxo__how-anim .hw-cursor { display: none; }
+  .taxo__how-touch,
+  .taxo__how-anim .hw-finger { display: inline; }
+}
+/* SVG 부품. 애니메이션이 없을 때의 모양 = 마지막 장면 (prefers-reduced-motion · 다 돈 뒤 · .is-done) */
+.taxo__how-anim * { transform-box: view-box; }
+.taxo__how-anim .hw-plate { fill: #e6e9ee; }
+.taxo__how-anim .hw-card { fill: #fff; stroke: #d3d8df; stroke-width: 1; }
+.taxo__how-anim .hw-sel { fill: none; stroke: var(--accent); stroke-width: 1.8; }
+.taxo__how-anim .hw-ripple { fill: none; stroke: var(--accent); stroke-width: 1.6; opacity: 0; transform-origin: 53px 53px; }
+.taxo__how-anim .hw-cursor { fill: #fff; stroke: var(--text); stroke-width: 1.1; stroke-linejoin: round; }
+.taxo__how-anim .hw-finger { fill: rgba(20, 24, 29, .28); stroke: #fff; stroke-width: 1.5; }
+.taxo__how-anim .hw-cursor,
+.taxo__how-anim .hw-finger { transform: translate(53px, 53px); }
+.taxo__how-anim .hw-peek { transform-origin: 52.5px 44.5px; }
+/* 2.9 바퀴: 세 번째 바퀴의 90 %(전부 보이는 구간)에서 끝나서, 끝난 뒤의 기본 스타일(= 마지막 장면)과 튀지 않고 이어짐 */
+.taxo__how-anim .hw-cursor,
+.taxo__how-anim .hw-finger { animation: taxoHowCursor 5.2s 2.9; }
+.taxo__how-anim .hw-peek { animation: taxoHowPeek 5.2s 2.9; }
+.taxo__how-anim .hw-ripple { animation: taxoHowRipple 5.2s 2.9; }
+.taxo__how-anim .hw-sel { animation: taxoHowSel 5.2s 2.9; }
+.taxo__how-anim .hw-panel { animation: taxoHowPanel 5.2s 2.9; }
+.taxo__how-step .taxo__how-num { animation: taxoHowStep1 5.2s 2.9; } /* 지금 장면의 번호만 진해짐 (문구는 늘 또렷하게) */
+.taxo__how-step + .taxo__how-step .taxo__how-num { animation-name: taxoHowStep2; }
+[data-reveal].is-hidden .taxo__how * { animation-play-state: paused; } /* 섹션이 화면에 들어오기 전에는 시작하지 않음 */
+.taxo__how.is-done .taxo__how-anim *,
+.taxo__how.is-done .taxo__how-num { animation: none; } /* 칸을 한 번 열면 바로 마지막 장면에서 멈춤 (JS) */
+@keyframes taxoHowCursor {
+  0% { opacity: 0; transform: translate(150px, 58px); }
+  6% { opacity: 1; transform: translate(146px, 56px); animation-timing-function: cubic-bezier(.45, 0, .2, 1); }
+  24%, 44% { transform: translate(53px, 53px); }
+  47% { transform: translate(53px, 53px) scale(.8); }
+  51%, 92% { opacity: 1; transform: translate(53px, 53px); }
+  100% { opacity: 0; transform: translate(53px, 53px); }
+}
+@keyframes taxoHowPeek {
+  0%, 25% { opacity: 0; transform: scale(.4); }
+  31% { opacity: 1; transform: scale(1.06); }
+  35%, 92% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: none; }
+}
+@keyframes taxoHowRipple {
+  0%, 45% { opacity: 0; transform: scale(.2); }
+  46% { opacity: .9; transform: scale(.2); }
+  62%, 100% { opacity: 0; transform: scale(1.5); }
+}
+@keyframes taxoHowSel { 0%, 47% { opacity: 0; } 50%, 92% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes taxoHowPanel {
+  0%, 49% { opacity: 0; transform: translateX(18px); animation-timing-function: cubic-bezier(.16, 1, .3, 1); }
+  62%, 92% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: none; }
+}
+@keyframes taxoHowStep1 {
+  0%, 8%, 50%, 100% { background-color: var(--accent-soft); color: var(--accent); }
+  14%, 44% { background-color: var(--accent); color: #fff; }
+}
+@keyframes taxoHowStep2 {
+  0%, 46%, 98%, 100% { background-color: var(--accent-soft); color: var(--accent); }
+  52%, 92% { background-color: var(--accent); color: #fff; }
 }
 
-/* 그림 위(위쪽) 안내 띠 */
-.taxo__tip {
-  margin-bottom: 14px;
-  padding: 10px 16px;
-  border-radius: 8px;
-  background: #eceef2;
-  color: var(--text-secondary);
-  font-size: .95rem;
-  text-align: center;
-}
 .taxo__stage {
   position: relative;
+  width: 100%;
+  max-width: 940px; /* 패널이 닫혀 있을 때 가운데 놓이는 보드 폭 */
+  justify-self: center;
   border-radius: var(--radius-lg);
   overflow: hidden;
   background: #fff;
@@ -839,9 +940,9 @@ figcaption,
   border: 1px solid transparent;
   cursor: pointer;
   transition: background .15s ease, border-color .15s ease;
+  scroll-margin: calc(var(--nav-h) + 16px) 0 16px; /* 키보드 포커스로 스크롤될 때 고정 nav 밑에 숨지 않게 */
 }
 .taxo__cell[data-grasp] { background: var(--cell-color, transparent); }
-.taxo__cell.is-hover,
 .taxo__cell:hover,
 .taxo__cell:focus-visible {
   border-color: #fff;
@@ -849,6 +950,7 @@ figcaption,
   outline-offset: -2px;
   z-index: 1;
 }
+.taxo__cell.is-selected { border-color: #fff; outline: 2px solid var(--accent); outline-offset: -2px; z-index: 2; } /* 패널에서 재생 중인 칸 */
 .taxo__cell:not([data-grasp]) { cursor: default; }
 
 /* ?taxodebug 모드: 격자 외곽선 + 셀 인덱스 */
@@ -866,30 +968,103 @@ figcaption,
   pointer-events: none;
 }
 
+/* 커서 옆 grasp 미리보기 (JS 가 transform 으로 위치를 잡음, --tail = 꼬리의 x) */
+.taxo__peek {
+  position: absolute;
+  left: 0; top: 0;
+  z-index: 20;
+  width: 196px;
+  padding: 6px 6px 8px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, .2);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .12s ease, visibility 0s linear .12s;
+}
+.taxo__peek.is-on { opacity: 1; visibility: visible; transition: opacity .12s ease; }
+.taxo__peek img { width: 100%; aspect-ratio: 6 / 5; object-fit: cover; border-radius: 6px; background: var(--bg-alt); }
+.taxo__peek img[hidden] { display: none; }
+.taxo__peek-name {
+  display: flex;
+  align-items: center;
+  margin: 7px 2px 0;
+  font-size: .86rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text);
+}
+.taxo__peek::after { /* 칸을 가리키는 꼬리 */
+  content: "";
+  position: absolute;
+  left: var(--tail, 50%);
+  bottom: -7px;
+  width: 12px; height: 12px;
+  background: #fff;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  transform: translateX(-50%) rotate(45deg);
+}
+.taxo__peek.is-below::after { bottom: auto; top: -7px; transform: translateX(-50%) rotate(-135deg); }
+.taxo__peek-cta { /* 미리보기에서 클릭으로 이끄는 한 줄 */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 5px 2px 0;
+  font-size: .76rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--accent);
+}
+.taxo__peek-cta::before { content: ""; flex: none; border-left: 7px solid currentColor; border-top: 4.5px solid transparent; border-bottom: 4.5px solid transparent; }
+.taxo__peek.is-current .taxo__peek-cta { display: none; } /* 이미 재생 중인 칸 */
+
+/* 클릭하면 생기는 패널 */
 .taxo__card {
   position: sticky;
   top: calc(var(--nav-h) + 16px);
-  padding: 22px;
+  min-width: 0;
+  padding: 16px 18px 18px;
   border-radius: var(--radius-lg);
   background: #fff;
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
-  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
+  gap: 4px;
 }
-.taxo__card img {
+.taxo__card[hidden] { display: none; }
+.taxo.is-open .taxo__card { animation: taxoPanelIn .5s var(--ease) both; }
+@keyframes taxoPanelIn { 0%, 20% { opacity: 0; transform: var(--taxo-panel-from, translateX(32px)); } } /* 열이 거의 다 자란 뒤 나타남 */
+.taxo__card img,
+.taxo__card video {
+  margin-top: 10px;
   width: 100%;
-  aspect-ratio: 6 / 5;
+  aspect-ratio: 4 / 3; /* rollout clips are 720×540; the grasp stills are cropped to the same box */
   height: auto;
   object-fit: cover;
   border-radius: var(--radius);
   background: var(--bg-alt);
 }
-.taxo__sub { font-size: .8rem; color: var(--muted); }
+.taxo__card img[hidden],
+.taxo__card video[hidden] { display: none; }
+.taxo__close {
+  position: absolute;
+  top: 10px; right: 10px;
+  width: 32px; height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  font: 400 24px/1 var(--font-sans);
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease;
+}
+.taxo__close:hover { background: var(--bg-alt); color: var(--text); }
+.taxo__close:focus-visible { outline: 3px solid var(--accent-soft); outline-offset: 1px; }
 
 /* 대표 타일 아래 이름 (페이지 폰트로 얹음) */
 .taxo__tile-label {
@@ -902,24 +1077,59 @@ figcaption,
   pointer-events: none;
 }
 @media (max-width: 640px) { .taxo__tile-label { font-size: .62rem; } }
-.taxo__card img[hidden] { display: none; }
+/* 대표 타일도 누르면 그 칸이 열림: 타일 + 이름 줄을 덮는 투명 상자 (JS 가 left/top 을 이름 위치 at[] 에서 잡음).
+   크기는 바둑판 그림의 타일 배치(1036×640 그림에서 타일 278×232 px, 이름 줄까지)에서 잰 값 */
+.taxo__tile {
+  position: absolute;
+  width: 27%;
+  height: 41.5%;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+.taxo__tile::before,
+.taxo__tile::after { content: ""; position: absolute; left: 50%; top: 44%; opacity: 0; transition: opacity .15s ease; }
+.taxo__tile::before { width: 48px; height: 48px; margin: -24px 0 0 -24px; border-radius: 50%; background: rgba(255, 255, 255, .94); box-shadow: 0 4px 14px rgba(15, 23, 42, .25); }
+.taxo__tile::after { margin: -9px 0 0 -5px; border-left: 16px solid var(--accent); border-top: 9px solid transparent; border-bottom: 9px solid transparent; }
+@media not all and (hover: none) and (pointer: coarse) { /* hover 하면 재생 버튼 (터치 기기는 탭 뒤 hover 가 남지 않게 뺌) */
+  .taxo__tile:hover::before,
+  .taxo__tile:hover::after { opacity: 1; }
+}
 .taxo__swatch {
+  flex: none;
   width: 14px; height: 14px;
   border-radius: 50%;
   display: inline-block;
   vertical-align: middle;
-  margin-right: 6px;
+  margin-right: 7px;
   background: var(--cell-color, var(--border));
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, .14);
 }
-.taxo__name { font-weight: 700; font-size: 1.25rem; color: var(--text); }
-.taxo__sub { font-size: .85rem; }
-.taxo__hint { font-size: .95rem; color: var(--muted); padding: 48px 0; }
-.taxo__hint:empty { display: none; }
+.taxo__name { display: flex; align-items: center; padding-right: 36px; font-weight: 700; font-size: 1.2rem; line-height: 1.3; color: var(--text); }
+.taxo__sub { font-size: .85rem; color: var(--muted); }
 
 @media (max-width: 860px) {
-  .taxo { grid-template-columns: 1fr; }
-  .taxo__card { position: static; min-height: 0; flex-direction: row; justify-content: flex-start; text-align: left; }
-  .taxo__card img { width: 88px; height: 88px; }
+  /* 좁은 화면: 패널은 보드 아래에 쌓임 */
+  .taxo, .taxo.is-open { grid-template-columns: minmax(0, 1fr); column-gap: 0; row-gap: 14px; }
+  .taxo__card {
+    position: relative; top: auto; scroll-margin-bottom: 12px; --taxo-panel-from: translateY(12px);
+    width: 100%; max-width: 520px; justify-self: center; /* 태블릿 세로에서도 보드와 패널이 한 화면에 */
+  }
+}
+@media (max-width: 560px) {
+  .taxo__how { padding: 8px 12px; gap: 6px 12px; }
+  .taxo__how-anim { width: 104px; }
+  .taxo__how-steps { font-size: .84rem; }
+  .taxo__how-step { gap: 8px; }
+  .taxo__peek { width: 164px; }
+  .taxo__peek-cta { font-size: .7rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .taxo { transition: none; }
+  .taxo.is-open .taxo__card,
+  .taxo__how-anim *,
+  .taxo__how-num { animation: none !important; }
+  .taxo__tile::before,
+  .taxo__tile::after { transition: none; }
 }
 
 /* ---------- Concurrent work 카드 ---------- */

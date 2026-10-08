@@ -510,8 +510,11 @@
 
       <!-- ── 2. Grasp taxonomy (인터랙티브) ──
            데이터: static/js/taxonomy-data.js (tools/build_taxonomy.py 가 exp_figures/ 에서 자동 생성).
-           task 는 화살표 캐러셀, embodiment 는 알약 버튼(JS 생성). 칸에 마우스를 올리면 그 칸의 grasp 이미지가 카드에 뜸.
-           격자 확인: ?taxodebug · 초기 선택: ?task=can&taxo=ur5e_allegro -->
+           task 는 화살표 캐러셀, embodiment 는 알약 버튼(JS 생성). 칸에 마우스를 올리면 커서 옆에 그 칸의 grasp 미리보기(#taxo-peek)가 뜸.
+           칸(또는 큰 대표 타일)을 클릭하면 오른쪽에 패널(#taxo-card, 좁은 화면은 보드 아래)이 생기며 그 칸의 rollout 이 재생됨:
+           static/videos/taxonomy/<task>/<emb>/X{행}Y{열}.mp4 (tools/build_rollouts.py 가 만듦). × / Esc 로 닫힘.
+           패널이 열린 채 task · embodiment 를 바꾸면 같은 칸의 새 rollout 으로 바뀜. 키보드: Tab 으로 판에 들어가 화살표로 칸 이동.
+           격자 확인: ?taxodebug · 초기 선택: ?task=can&taxo=ur5e_allegro · 처음부터 패널 열기: &cell=행,열 (0부터) -->
       <div class="subsection" data-reveal>
         <h3 class="subsection__title">Diverse Grasp Strategies across Dexterous Embodiments and Object Configurations</h3>
         <p class="subsection__lead">Rather than retargeting the single grasp shown in the human video, Dex-One2Many trains on diverse grasps synthesized for each hand, so the policy learns grasps that fit its own morphology and the scene. Across the 33-type grasp taxonomy, different embodiments settle on different grasp types, and the same hand changes its grasp as the object configuration changes.</p>
@@ -531,15 +534,62 @@
         </div>
 
         <div class="tabs" role="tablist" aria-label="Embodiment" data-tabs="taxo" id="taxo-tabs"></div>
-        <div class="taxo__tip">💡 Click on any cell of the board to view the grasp the policy chose there</div>
+        <!-- 사용법 애니메이션 (CSS/SVG, 5.2 s 한 바퀴): 커서가 칸에 올라감 → grasp 말풍선 → 클릭 → 오른쪽 패널 + 재생 표시.
+             섹션이 화면에 들어오면 세 바퀴쯤 돌고 마지막 장면에서 멈춤. 칸을 처음 열면 바로 멈춤(.is-done).
+             prefers-reduced-motion 이면 마지막 장면으로 멈춤. 터치 기기는 손가락 + "Tap" 문구 -->
+        <div class="taxo__how">
+          <svg class="taxo__how-anim" viewBox="0 0 184 78" aria-hidden="true">
+            <rect class="hw-plate" x="2" y="27" width="100" height="49" rx="5"/>
+            <g class="hw-cells">
+              <rect x="9" y="33" width="15" height="11" rx="2" fill="#f6d66f"/><rect x="27" y="33" width="15" height="11" rx="2" fill="#f6d66f"/><rect x="45" y="33" width="15" height="11" rx="2" fill="#f6d66f"/><rect x="63" y="33" width="15" height="11" rx="2" fill="#f4a3c4"/><rect x="81" y="33" width="15" height="11" rx="2" fill="#f4a3c4"/>
+              <rect x="9" y="47" width="15" height="11" rx="2" fill="#8c6bd6"/><rect x="27" y="47" width="15" height="11" rx="2" fill="#f6d66f"/><rect x="45" y="47" width="15" height="11" rx="2" fill="#f4a3c4"/><rect x="63" y="47" width="15" height="11" rx="2" fill="#f4a3c4"/><rect x="81" y="47" width="15" height="11" rx="2" fill="#f4a3c4"/>
+              <rect x="9" y="61" width="15" height="11" rx="2" fill="#f6d66f"/><rect x="27" y="61" width="15" height="11" rx="2" fill="#f6d66f"/><rect x="45" y="61" width="15" height="11" rx="2" fill="#f4a3c4"/><rect x="63" y="61" width="15" height="11" rx="2" fill="#f4a3c4"/><rect x="81" y="61" width="15" height="11" rx="2" fill="#f4a3c4"/>
+            </g>
+            <rect class="hw-sel" x="43.5" y="45.5" width="18" height="14" rx="2.5"/>
+            <g class="hw-panel">
+              <rect class="hw-card" x="112" y="6" width="68" height="68" rx="6"/>
+              <circle cx="120" cy="14.5" r="2.6" fill="#f4a3c4"/>
+              <rect x="125" y="13" width="30" height="3" rx="1.5" fill="#4b5563"/>
+              <rect x="117" y="20" width="22" height="2.4" rx="1.2" fill="#c3c8cf"/>
+              <rect x="117" y="27" width="58" height="41" rx="3" fill="#1f2937"/>
+              <circle cx="146" cy="47.5" r="8" fill="#fff" fill-opacity=".92"/>
+              <path d="M143.4 43.3 150.6 47.5 143.4 51.7Z" fill="#1f2937"/>
+            </g>
+            <g class="hw-peek">
+              <rect class="hw-card" x="30" y="3" width="45" height="37" rx="4"/>
+              <path class="hw-card" d="M48.5 39.4 52.5 44.5 56.5 39.4"/>
+              <rect x="33" y="6" width="39" height="22" rx="2.5" fill="#dfe3e9"/>
+              <circle cx="52.5" cy="23.5" r="4.2" fill="#fff" stroke="#c9ced6" stroke-width=".8"/>
+              <rect x="47.5" y="9" width="10" height="8" rx="3" fill="#f4a3c4"/>
+              <path d="M49.3 16.5 48.3 23M52.5 16.5V24M55.7 16.5 56.7 23" stroke="#f4a3c4" stroke-width="2.2" stroke-linecap="round"/>
+              <circle cx="36.3" cy="34" r="2.2" fill="#f4a3c4"/>
+              <rect x="40.5" y="32.5" width="28" height="3" rx="1.5" fill="#9aa0a8"/>
+            </g>
+            <circle class="hw-ripple" cx="53" cy="53" r="10"/>
+            <path class="hw-cursor" d="M0 0V13.5L3.4 10.4 5.9 15.8 8.3 14.7 5.8 9.4H10.4Z"/>
+            <circle class="hw-finger" r="6"/>
+          </svg>
+          <ol class="taxo__how-steps">
+            <li class="taxo__how-step"><span class="taxo__how-num">1</span><span class="taxo__how-mouse"><b>Hover</b> a cell to see the grasp</span><span class="taxo__how-touch"><b>Tap</b> a cell to see the grasp</span></li>
+            <li class="taxo__how-step"><span class="taxo__how-num">2</span><span class="taxo__how-mouse"><b>Click</b> to watch the rollout</span><span class="taxo__how-touch"><b>Watch</b> its rollout</span></li>
+          </ol>
+        </div>
         <div class="taxo" id="taxo">
           <div class="taxo__stage" id="taxo-stage"></div>
-          <aside class="taxo__card" id="taxo-card" aria-live="polite">
-            <img id="taxo-card-img" alt="" hidden>
-            <div class="taxo__name" id="taxo-card-name"><span id="taxo-card-label"></span></div>
+          <!-- 클릭하면 생기는 패널: 이름 · 행/열 · rollout (영상이 없으면 grasp 이미지) -->
+          <aside class="taxo__card" id="taxo-card" aria-live="polite" hidden>
+            <div class="taxo__name"><span class="taxo__swatch" id="taxo-card-swatch"></span><span id="taxo-card-label"></span></div>
             <div class="taxo__sub" id="taxo-card-sub"></div>
-            <div class="taxo__hint" id="taxo-card-hint">Click a cell to see its grasp here</div>
+            <video id="taxo-card-video" muted loop playsinline preload="auto"></video>
+            <img id="taxo-card-img" alt="" hidden>
+            <button type="button" class="taxo__close" id="taxo-card-close" aria-label="Close the rollout">×</button>
           </aside>
+          <!-- 커서 옆 grasp 미리보기 (위치는 JS 가 잡음; 보조기기에는 칸의 aria-label 이 같은 정보를 줌) -->
+          <div class="taxo__peek" id="taxo-peek" aria-hidden="true">
+            <img alt="">
+            <div class="taxo__peek-name"><span class="taxo__swatch"></span><span></span></div>
+            <div class="taxo__peek-cta">Click to watch the rollout</div><!-- 재생 중인 칸에서는 숨김 (.is-current) -->
+          </div>
         </div>
       </div>
 
