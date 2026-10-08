@@ -23,6 +23,8 @@
   <script defer src="static/js/index.js"></script>
 </head>
 <body>
+  <!-- 재사용 아이콘 정의 (Academicons arXiv) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="icon-arxiv" viewBox="100 27 248 330"><path d="m 119.65,351.996 c -5.84961,0.13477 -11.1943,-3.29883 -13.502,-8.67578 -2.19629,-5.27051 -0.61914,-8.9668 4.19727,-15.8652 7.05469,-10.3799 78.8242,-96.5625 78.8242,-96.5625 l -15.8828,-14.8633 c -13.3809,-13.3779 -13.9561,-31.333 -1.50977,-43.7754 l 18.4922,-17.6133 -51.5977,-63.377 c -4.00586,-4.26758 -6.48535,-11.7559 -4.24805,-17.1309 2.27832,-5.53613 7.69727,-9.12891 13.6836,-9.07031 3.83398,0.0957 7.43262,1.87402 9.83789,4.86133 l 61.3691,57.0566 94.5762,-90.0703 c 3.19434,-3.08398 7.44336,-4.83984 11.8828,-4.91016 1.60449,0.0039 3.19824,0.245117 4.73242,0.714844 5.7793,1.80566 10.249,6.41797 11.8711,12.252 1.2998,5.47363 -0.27637,11.2334 -4.18164,15.2832 l -83.0859,100.011996 14.8789,13.834 c 11.0957,10.0029 11.1543,27.3906 0.12695,37.4688 l -16.2949,15.6309 56.2559,66.4434 0.0742,0.0859 0.0664,0.0899 c 5.02734,6.53125 7.43164,11.5615 4.83984,17.9395 -3.13379,5.96875 -8.69727,10.29 -15.2559,11.8516 -0.67676,0.0908 -1.35938,0.13574 -2.04297,0.13671 l -0.004,-0.0117 c -4.42871,-0.27051 -8.61035,-2.13086 -11.7754,-5.24023 l -0.13086,-0.10743 -0.12304,-0.11132 -65.207,-59.127 -89.8965,86.2402 c 0,0 -5.33398,6.47754 -10.9707,6.61133 z m 178.104,-33.041 c 0.47852,-0.002 0.95703,-0.0332 1.43164,-0.0957 4.84277,-1.33301 8.95605,-4.54004 11.4316,-8.91016 1.44922,-3.5625 1.00293,-6.45703 -4.19727,-13.2148 l -56.0586,-66.2188 -26.375,25.3027 64.9551,58.9062 c 2.33887,2.41504 5.46484,3.91113 8.8125,4.2168 v 0.0137 z M 192.436,227.402 334.446,57.244 c 2.78711,-3.48926 4.5293,-6.97949 3.3418,-10.9121 -1.16113,-4.30273 -4.43457,-7.71777 -8.68555,-9.05664 -1.08105,-0.333984 -2.20508,-0.503906 -3.33594,-0.505859 -3.20801,0.07617 -6.26953,1.35645 -8.57617,3.58789 l -142.033,135.284999 c -11.1719,11.1719 -9.48242,26.0195 1.39258,36.8945 z"/></symbol></svg>
 
   <!-- ============ FIXED NAV ============ -->
   <nav id="site-nav" class="nav" aria-label="Page">
@@ -541,6 +543,90 @@
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ============ CONCURRENT WORK ============
+       카드 하나 = 왼쪽 티저 이미지 + arXiv/Project Page 버튼, 오른쪽 논문명·부제·한 줄 설명·"How it relates" 펼침 글.
+       TODO: 아래 자리표시자 카드 2개를 실제 논문으로 교체. 티저 이미지는 static/images/concurrent/<slug>.png (16:9 권장) -->
+  <section id="concurrent" class="section section--alt">
+    <div class="cw-wrap">
+      <div data-reveal>
+        <h2 class="section__title">Concurrent Work</h2>
+        <p class="section__lead">Additional works to be added</p>
+      </div>
+
+      <article class="cw-card" data-reveal>
+        <div class="cw-card__media">
+          <img src="static/images/concurrent/morphometric_imitation.png" alt="Morphometric Imitation teaser" loading="lazy">
+          <div class="cw-card__links">
+            <a href="https://arxiv.org/abs/2609.28660" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">
+              <svg viewBox="100 27 248 330" fill="currentColor" aria-hidden="true"><use href="#icon-arxiv"/></svg>
+              arXiv
+            </a>
+            <a href="https://morphometricimitation.github.io/" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              Project Page
+            </a>
+          </div>
+        </div>
+        <div class="cw-card__body">
+          <p class="cw-card__title"><a href="https://morphometricimitation.github.io/" target="_blank" rel="noopener noreferrer">Morphometric Imitation</a>: <strong>From Morphology and Contact Aware Hand Retargeting to Sim-to-Real Visuomotor Policy</strong></p>
+          <p class="cw-card__desc">Retargets human hand–object interactions across hand morphologies while preserving contacts, refines them with residual RL, and distills the result into zero-shot sim-to-real visuomotor policies.</p>
+          <details class="cw-card__rel">
+            <summary>How it relates</summary>
+            <p>Both learn a dexterous manipulation policy from a single human video. Morphometric Imitation retargets the demonstrated motion, so its generalization is evaluated with the object’s initial position varied only within roughly a 10 cm × 10 cm region around the demonstration. Dex-One2Many abstracts the video into task relations instead of motion, so the policy generalizes to initial and goal poses far from the ones in the video.</p>
+          </details>
+        </div>
+      </article>
+
+      <article class="cw-card" data-reveal>
+        <div class="cw-card__media">
+          <img src="static/images/concurrent/flashretarget.png" alt="FlashDexRetarget teaser" loading="lazy">
+          <div class="cw-card__links">
+            <a href="https://arxiv.org/abs/2610.01849" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">
+              <svg viewBox="100 27 248 330" fill="currentColor" aria-hidden="true"><use href="#icon-arxiv"/></svg>
+              arXiv
+            </a>
+            <a href="https://davian-robotics.github.io/FlashDexRetarget/" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              Project Page
+            </a>
+          </div>
+        </div>
+        <div class="cw-card__body">
+          <p class="cw-card__title"><a href="https://davian-robotics.github.io/FlashDexRetarget/" target="_blank" rel="noopener noreferrer">FlashDexRetarget</a>: <strong>Accelerating Dexterous Manipulation Data Generation through Multi-Motion Retargeting</strong></p>
+          <p class="cw-card__desc">Learns a single RL policy that tracks many human hand–object demonstrations at once, retargeting them to dexterous hands with about 100× less training compute than per-demonstration methods.</p>
+          <details class="cw-card__rel">
+            <summary>How it relates</summary>
+            <p>Both train a single RL policy that produces diverse dexterous motions. FlashDexRetarget leaves generalization to motions not in the demonstrations as future work. Dex-One2Many targets exactly that case: by abstracting the video into task relations rather than tracking its motion, the policy produces motions that never appear in the video.</p>
+          </details>
+        </div>
+      </article>
+
+      <article class="cw-card" data-reveal>
+        <div class="cw-card__media">
+          <img src="static/images/concurrent/dexagent.png" alt="DexAgent teaser" loading="lazy">
+          <div class="cw-card__links">
+            <a href="https://arxiv.org/abs/2609.35318" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">
+              <svg viewBox="100 27 248 330" fill="currentColor" aria-hidden="true"><use href="#icon-arxiv"/></svg>
+              arXiv
+            </a>
+            <a href="https://dexagent1.github.io/" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              Project Page
+            </a>
+          </div>
+        </div>
+        <div class="cw-card__body">
+          <p class="cw-card__title"><a href="https://dexagent1.github.io/" target="_blank" rel="noopener noreferrer">DexAgent</a>: <strong>An Agentic Human2Sim2Robot Framework for Dexterous Manipulation with Self-Evolving Tool Library</strong></p>
+          <p class="cw-card__desc">An agentic pipeline that turns one egocentric human video and a task prompt into simulated robot trajectories for policy training, choosing or writing tools for each stage and verifying the outcome.</p>
+          <details class="cw-card__rel">
+            <summary>How it relates</summary>
+            <p>Both augment a single human video into diverse simulated configurations so the robot handles situations the video never shows. They differ in how the robot motion comes about: DexAgent generates trajectories with optimization tools that an agent selects from a self-evolving library and verifies, then trains a policy on that data. Dex-One2Many learns the motion with RL, using the scene graph to vary not only object poses but also the grasp, so each hand discovers its own way to solve the task.</p>
+          </details>
+        </div>
+      </article>
     </div>
   </section>
 
