@@ -193,6 +193,13 @@ section[id], header[id] { scroll-margin-top: var(--nav-h); }
 .nav.is-solid .nav__cta { background: var(--text); color: #fff; box-shadow: none; }
 .nav.is-solid .nav__cta:hover { background: var(--accent); color: #fff; }
 
+/* 공개 전 Code 링크: "(Coming soon)" 표시, 클릭·호버 반응 없음 */
+.nav__action small { font-size: .78em; font-weight: 500; opacity: .75; margin-left: 2px; }
+.nav__action--soon { cursor: default; opacity: .75; }
+.nav__action--soon:hover { color: #fff; }
+.nav.is-solid .nav__action--soon:hover { color: var(--text-secondary); }
+@media (max-width: 640px) { .nav__action small { display: none; } }
+
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex;
@@ -255,8 +262,9 @@ section[id], header[id] { scroll-margin-top: var(--nav-h); }
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  min-height: 100vh;
-  min-height: 100svh;
+  /* 티저(16:9)가 잘리지 않도록: 화면 높이와 '폭 × 9/16' 중 작은 값. 16:10 화면에서는 히어로가 살짝 짧아짐 */
+  height: min(100svh, 56.25vw);
+  min-height: 420px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -277,37 +285,30 @@ section[id], header[id] { scroll-margin-top: var(--nav-h); }
   position: absolute;
   inset: 0;
   z-index: 1;
+  /* 영상이 잘 보이도록 옅게. 상단은 내비 글자, 하단은 제목 가독성용 */
   background: linear-gradient(
     180deg,
-    rgba(6, 9, 13, .62) 0%,
-    rgba(6, 9, 13, .30) 38%,
-    rgba(6, 9, 13, .74) 100%
+    rgba(6, 9, 13, .16) 0%,
+    rgba(6, 9, 13, .02) 40%,
+    rgba(6, 9, 13, .26) 100%
   );
   pointer-events: none;
 }
 
+/* 프로젝트명을 화면 왼쪽 아래에 */
 .hero__content {
-  position: relative;
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
   z-index: 2;
-  width: min(100%, var(--max-w));
-  margin: 0 auto;
-  padding: calc(var(--nav-h) + 56px) clamp(20px, 5vw, 40px) 64px;
-  text-align: center;
-}
-
-.hero__actions { margin-top: 56px; gap: 16px; }
-.hero__actions .btn { font-size: 1.25rem; padding: 15px 32px; }
-.hero__actions .btn svg { width: 22px; height: 22px; }
-@media (max-width: 640px) {
-  .hero__actions { margin-top: 36px; gap: 12px; }
-  .hero__actions .btn { font-size: 1.05rem; padding: 12px 22px; }
-  .hero__actions .btn svg { width: 18px; height: 18px; }
+  padding: 0 clamp(24px, 4vw, 56px) clamp(48px, 9vh, 100px);
+  text-align: left;
 }
 
 .hero__title {
-  font-weight: 700;
-  font-size: clamp(2.2rem, 5.5vw, 5rem); /* 1440px에서 79px(최대 80px), 375px에서 35px */
-  line-height: 1.05;
+  font-weight: 800;
+  /* 화면 폭 9% 와 높이 15% 중 작은 값: 1440×900 에서 약 130px, 1920×1080 에서 약 162px, 375px 에서 40px */
+  font-size: clamp(2.5rem, min(9vw, 15svh), 10.5rem);
+  line-height: 1;
   overflow-wrap: anywhere;
   letter-spacing: -0.03em;
   color: #fff;
@@ -331,6 +332,8 @@ section[id], header[id] { scroll-margin-top: var(--nav-h); }
 
 /* 설명문을 아래 콘텐츠(본문 최대 폭)와 같은 너비로 */
 p.section__lead.section__lead--wide { max-width: var(--max-w); }
+/* 설명문을 아래 영상(.media--wide, 960px)과 같은 너비로 */
+p.section__lead.section__lead--video { max-width: 960px; }
 
 /* 부제 없이 제목 바로 아래 콘텐츠가 올 때 */
 .section__title--solo { margin-bottom: 36px; }
@@ -378,9 +381,10 @@ p.section__lead {
   max-width: var(--max-w);
   margin: 0 auto;
   font-size: clamp(1.4rem, 3.4vw, 2.7rem);
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.2;
 }
+.paper-header__name { font-weight: 800; }
 
 /* 데스크톱에서만 제목을 지정한 위치에서 두 줄로 끊음 */
 @media (max-width: 900px) { .br-desktop { display: none; } }
@@ -488,6 +492,17 @@ figcaption,
 /* 래퍼를 투명하게 해서 안의 figure 3개가 부모 그리드의 열을 직접 차지 */
 .one2many__targets { display: contents; }
 
+/* task 별 줄 묶음 + 열 머리글 */
+.one2many-table > .one2many + .one2many { margin-top: 18px; }
+.one2many--head { align-items: end; margin-bottom: -2px; }
+.one2many__col {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  text-align: center;
+}
+.one2many__col--span { grid-column: span 3; }
+
 .one2many__arrow {
   display: flex;
   align-items: center;
@@ -498,6 +513,8 @@ figcaption,
 
 @media (max-width: 860px) {
   .one2many { grid-template-columns: 1fr; gap: 18px; }
+  .one2many--head { display: none; }
+  .one2many-table > .one2many + .one2many { margin-top: 32px; }
   .one2many__arrow svg { transform: rotate(90deg); width: 36px; height: 36px; }
 }
 
@@ -956,10 +973,11 @@ figcaption,
 
 @media (max-width: 640px) {
   body { font-size: 16px; }
+  /* 세로 화면: 16:9 로 맞추면 띠처럼 얇아지므로 화면을 채우고 좌우를 자른다 */
+  .hero { height: 100svh; }
   .nav__action { display: none; } /* 좁은 화면에서는 Code 버튼만 남김 */
   .nav__cta { padding: 9px 16px; font-size: 1.05rem; }
   .nav__cta svg { width: 18px; height: 18px; }
-  .hero__content { padding-top: calc(var(--nav-h) + 32px); padding-bottom: 88px; }
   .btn { padding: 10px 18px; font-size: .95rem; }
   .paper-header { padding-top: 56px; }
   .bibtex pre { font-size: .8rem; padding: 18px; }

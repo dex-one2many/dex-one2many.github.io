@@ -36,7 +36,7 @@
     </div>
     <!-- 오른쪽 위 링크 묶음. TODO: 각 href 채우기 -->
     <div class="nav__actions">
-      <a href="#" target="_blank" rel="noopener noreferrer" class="nav__action">
+      <a href="#" target="_blank" rel="noopener noreferrer" class="nav__cta">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 1.5V8h4.5L14 3.5z"/></svg>
         Paper
       </a>
@@ -45,9 +45,9 @@
         <svg viewBox="100 27 248 330" fill="currentColor" aria-hidden="true"><path d="m 119.65,351.996 c -5.84961,0.13477 -11.1943,-3.29883 -13.502,-8.67578 -2.19629,-5.27051 -0.61914,-8.9668 4.19727,-15.8652 7.05469,-10.3799 78.8242,-96.5625 78.8242,-96.5625 l -15.8828,-14.8633 c -13.3809,-13.3779 -13.9561,-31.333 -1.50977,-43.7754 l 18.4922,-17.6133 -51.5977,-63.377 c -4.00586,-4.26758 -6.48535,-11.7559 -4.24805,-17.1309 2.27832,-5.53613 7.69727,-9.12891 13.6836,-9.07031 3.83398,0.0957 7.43262,1.87402 9.83789,4.86133 l 61.3691,57.0566 94.5762,-90.0703 c 3.19434,-3.08398 7.44336,-4.83984 11.8828,-4.91016 1.60449,0.0039 3.19824,0.245117 4.73242,0.714844 5.7793,1.80566 10.249,6.41797 11.8711,12.252 1.2998,5.47363 -0.27637,11.2334 -4.18164,15.2832 l -83.0859,100.011996 14.8789,13.834 c 11.0957,10.0029 11.1543,27.3906 0.12695,37.4688 l -16.2949,15.6309 56.2559,66.4434 0.0742,0.0859 0.0664,0.0899 c 5.02734,6.53125 7.43164,11.5615 4.83984,17.9395 -3.13379,5.96875 -8.69727,10.29 -15.2559,11.8516 -0.67676,0.0908 -1.35938,0.13574 -2.04297,0.13671 l -0.004,-0.0117 c -4.42871,-0.27051 -8.61035,-2.13086 -11.7754,-5.24023 l -0.13086,-0.10743 -0.12304,-0.11132 -65.207,-59.127 -89.8965,86.2402 c 0,0 -5.33398,6.47754 -10.9707,6.61133 z m 178.104,-33.041 c 0.47852,-0.002 0.95703,-0.0332 1.43164,-0.0957 4.84277,-1.33301 8.95605,-4.54004 11.4316,-8.91016 1.44922,-3.5625 1.00293,-6.45703 -4.19727,-13.2148 l -56.0586,-66.2188 -26.375,25.3027 64.9551,58.9062 c 2.33887,2.41504 5.46484,3.91113 8.8125,4.2168 v 0.0137 z M 192.436,227.402 334.446,57.244 c 2.78711,-3.48926 4.5293,-6.97949 3.3418,-10.9121 -1.16113,-4.30273 -4.43457,-7.71777 -8.68555,-9.05664 -1.08105,-0.333984 -2.20508,-0.503906 -3.33594,-0.505859 -3.20801,0.07617 -6.26953,1.35645 -8.57617,3.58789 l -142.033,135.284999 c -11.1719,11.1719 -9.48242,26.0195 1.39258,36.8945 z"/></svg>
         arXiv
       </a>
-      <a href="#" target="_blank" rel="noopener noreferrer" class="nav__cta">
+      <a class="nav__action nav__action--soon" role="link" aria-disabled="true" title="Code will be released soon">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.85 9.73.5.1.68-.22.68-.49l-.01-1.7c-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05a9.4 9.4 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.82c0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
-        Code
+        Code <small>(Coming soon)</small>
       </a>
     </div>
   </nav>
@@ -60,23 +60,9 @@
     </video>
     <div class="hero__overlay"></div>
 
-    <!-- 첫 화면: 영상 + 프로젝트명 + 링크 버튼. TODO: 각 href 채우기 (내비의 링크와 같은 주소) -->
+    <!-- 첫 화면: 영상 + 왼쪽 아래 프로젝트명. 링크는 상단 내비에 있음 -->
     <div class="hero__content">
       <h1 class="hero__title">Dex-One2Many</h1>
-      <div class="btn-row hero__actions">
-        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn--light">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 1.5V8h4.5L14 3.5z"/></svg>
-          Paper
-        </a>
-        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn--light">
-          <svg viewBox="100 27 248 330" fill="currentColor" aria-hidden="true"><path d="m 119.65,351.996 c -5.84961,0.13477 -11.1943,-3.29883 -13.502,-8.67578 -2.19629,-5.27051 -0.61914,-8.9668 4.19727,-15.8652 7.05469,-10.3799 78.8242,-96.5625 78.8242,-96.5625 l -15.8828,-14.8633 c -13.3809,-13.3779 -13.9561,-31.333 -1.50977,-43.7754 l 18.4922,-17.6133 -51.5977,-63.377 c -4.00586,-4.26758 -6.48535,-11.7559 -4.24805,-17.1309 2.27832,-5.53613 7.69727,-9.12891 13.6836,-9.07031 3.83398,0.0957 7.43262,1.87402 9.83789,4.86133 l 61.3691,57.0566 94.5762,-90.0703 c 3.19434,-3.08398 7.44336,-4.83984 11.8828,-4.91016 1.60449,0.0039 3.19824,0.245117 4.73242,0.714844 5.7793,1.80566 10.249,6.41797 11.8711,12.252 1.2998,5.47363 -0.27637,11.2334 -4.18164,15.2832 l -83.0859,100.011996 14.8789,13.834 c 11.0957,10.0029 11.1543,27.3906 0.12695,37.4688 l -16.2949,15.6309 56.2559,66.4434 0.0742,0.0859 0.0664,0.0899 c 5.02734,6.53125 7.43164,11.5615 4.83984,17.9395 -3.13379,5.96875 -8.69727,10.29 -15.2559,11.8516 -0.67676,0.0908 -1.35938,0.13574 -2.04297,0.13671 l -0.004,-0.0117 c -4.42871,-0.27051 -8.61035,-2.13086 -11.7754,-5.24023 l -0.13086,-0.10743 -0.12304,-0.11132 -65.207,-59.127 -89.8965,86.2402 c 0,0 -5.33398,6.47754 -10.9707,6.61133 z m 178.104,-33.041 c 0.47852,-0.002 0.95703,-0.0332 1.43164,-0.0957 4.84277,-1.33301 8.95605,-4.54004 11.4316,-8.91016 1.44922,-3.5625 1.00293,-6.45703 -4.19727,-13.2148 l -56.0586,-66.2188 -26.375,25.3027 64.9551,58.9062 c 2.33887,2.41504 5.46484,3.91113 8.8125,4.2168 v 0.0137 z M 192.436,227.402 334.446,57.244 c 2.78711,-3.48926 4.5293,-6.97949 3.3418,-10.9121 -1.16113,-4.30273 -4.43457,-7.71777 -8.68555,-9.05664 -1.08105,-0.333984 -2.20508,-0.503906 -3.33594,-0.505859 -3.20801,0.07617 -6.26953,1.35645 -8.57617,3.58789 l -142.033,135.284999 c -11.1719,11.1719 -9.48242,26.0195 1.39258,36.8945 z"/></svg>
-          arXiv
-        </a>
-        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn--light">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.85 9.73.5.1.68-.22.68-.49l-.01-1.7c-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05a9.4 9.4 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.82c0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
-          Code
-        </a>
-      </div>
     </div>
   </header>
 
@@ -84,7 +70,7 @@
   <section id="top" class="section paper-header">
     <div class="container" data-reveal>
       <h2 class="paper-header__title">
-        Dex-One2Many: Learning Dexterous Manipulation<br class="br-desktop">
+        <strong class="paper-header__name">Dex-One2Many</strong>: Learning Dexterous Manipulation<br class="br-desktop">
         from a Single Human Demonstration
       </h2>
 
@@ -94,7 +80,7 @@
           <span><a href="https://ju-suk.github.io/">Jusuk Lee</a><sup>1*</sup></span>
           <span><a href="https://shkim37.github.io/">Sungha Kim</a><sup>1*</sup></span>
           <span><a href="#">Yeonsoo Park</a><sup>1*</sup></span>
-          <span><a href="#">Jonguk Cheon</a><sup>1</sup></span>
+          <span><a href="https://tentothepowerof3.github.io/">Jonguk Cheon</a><sup>1</sup></span>
           <span><a href="https://yoonkyojung.com/">Yoonkyo Jung</a><sup>2</sup></span>
           <span><a href="#">Yongjun You</a><sup>1</sup></span>
           <span><a href="https://scholar.google.com/citations?user=TLQUwIMAAAAJ&hl=ko">H. Jin Kim</a><sup>1</sup></span>
@@ -114,19 +100,6 @@
         </div>
       </div>
 
-      <!-- 모바일에서는 nav 링크가 숨겨지므로 여기서 한 번 더 노출 -->
-      <div class="btn-row">
-        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 1.5V8h4.5L14 3.5z"/></svg>
-          Paper
-        </a>
-        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">
-          <svg viewBox="100 27 248 330" fill="currentColor" aria-hidden="true"><path d="m 119.65,351.996 c -5.84961,0.13477 -11.1943,-3.29883 -13.502,-8.67578 -2.19629,-5.27051 -0.61914,-8.9668 4.19727,-15.8652 7.05469,-10.3799 78.8242,-96.5625 78.8242,-96.5625 l -15.8828,-14.8633 c -13.3809,-13.3779 -13.9561,-31.333 -1.50977,-43.7754 l 18.4922,-17.6133 -51.5977,-63.377 c -4.00586,-4.26758 -6.48535,-11.7559 -4.24805,-17.1309 2.27832,-5.53613 7.69727,-9.12891 13.6836,-9.07031 3.83398,0.0957 7.43262,1.87402 9.83789,4.86133 l 61.3691,57.0566 94.5762,-90.0703 c 3.19434,-3.08398 7.44336,-4.83984 11.8828,-4.91016 1.60449,0.0039 3.19824,0.245117 4.73242,0.714844 5.7793,1.80566 10.249,6.41797 11.8711,12.252 1.2998,5.47363 -0.27637,11.2334 -4.18164,15.2832 l -83.0859,100.011996 14.8789,13.834 c 11.0957,10.0029 11.1543,27.3906 0.12695,37.4688 l -16.2949,15.6309 56.2559,66.4434 0.0742,0.0859 0.0664,0.0899 c 5.02734,6.53125 7.43164,11.5615 4.83984,17.9395 -3.13379,5.96875 -8.69727,10.29 -15.2559,11.8516 -0.67676,0.0908 -1.35938,0.13574 -2.04297,0.13671 l -0.004,-0.0117 c -4.42871,-0.27051 -8.61035,-2.13086 -11.7754,-5.24023 l -0.13086,-0.10743 -0.12304,-0.11132 -65.207,-59.127 -89.8965,86.2402 c 0,0 -5.33398,6.47754 -10.9707,6.61133 z m 178.104,-33.041 c 0.47852,-0.002 0.95703,-0.0332 1.43164,-0.0957 4.84277,-1.33301 8.95605,-4.54004 11.4316,-8.91016 1.44922,-3.5625 1.00293,-6.45703 -4.19727,-13.2148 l -56.0586,-66.2188 -26.375,25.3027 64.9551,58.9062 c 2.33887,2.41504 5.46484,3.91113 8.8125,4.2168 v 0.0137 z M 192.436,227.402 334.446,57.244 c 2.78711,-3.48926 4.5293,-6.97949 3.3418,-10.9121 -1.16113,-4.30273 -4.43457,-7.71777 -8.68555,-9.05664 -1.08105,-0.333984 -2.20508,-0.503906 -3.33594,-0.505859 -3.20801,0.07617 -6.26953,1.35645 -8.57617,3.58789 l -142.033,135.284999 c -11.1719,11.1719 -9.48242,26.0195 1.39258,36.8945 z"/></svg>
-          arXiv
-        </a>
-        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">Code</a>
-        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">Video</a>
-      </div>
     </div>
   </section>
 
@@ -135,11 +108,11 @@
     <div class="container">
       <div data-reveal>
         <h2 class="section__title">Overview</h2>
-        <p class="section__lead">
+        <p class="section__lead section__lead--video">
           <span class="tldr">TL;DR</span>
-          Dex-One2Many learns a dexterous manipulation policy from a single human video that generalizes to
-          object poses, goal poses, and grasps never shown in the video. Our key insight is to abstract the video
-          into sequential scene graphs that guide RL, enabling efficient exploration while preserving broad generalizability.
+          Dex-One2Many learns dexterous manipulation from a single human video and generalizes to poses and grasps
+          never shown in the video. Our key insight is to abstract the video into sequential scene graphs that guide RL,
+          enabling efficient exploration while preserving broad generalizability.
         </p>
       </div>
 
@@ -168,47 +141,51 @@
         </p>
       </div>
 
-      <div class="one2many" data-reveal>
-        <!-- 왼쪽: 사람 시연 영상 1개. TODO: static/videos/one2many_human.mp4 -->
-        <figure class="one2many__source">
-          <div class="media">
-            <video autoplay muted loop playsinline preload="metadata" aria-label="The single human demonstration video">
-              <source src="static/videos/one2many_human.mp4" type="video/mp4">
-            </video>
-            <span class="media__badge">Human video</span>
-          </div>
-        </figure>
-
-        <div class="one2many__arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M13 5l7 7-7 7"/></svg>
+      <!-- 사람 시연 1개 → 실제 로봇 3개, task 마다 한 줄 (Doll · Can · Stamp). Can/Stamp 로봇 클립은 2배속(data-rate) -->
+      <div class="one2many-table" data-reveal>
+        <div class="one2many one2many--head" aria-hidden="true">
+          <div class="one2many__col">Human video</div>
+          <div></div>
+          <div class="one2many__col one2many__col--span">Real robot · configurations never shown in the video</div>
         </div>
-
-        <!-- 오른쪽: 영상에 없던 configuration 3개를 가로로. TODO: 영상 경로 -->
-        <div class="one2many__targets">
-          <figure>
+        <div class="one2many">
+          <figure class="one2many__source">
             <div class="media">
-              <video autoplay muted loop playsinline preload="metadata" aria-label="[Configuration 1]">
-                <source src="static/videos/one2many_config_1.mp4" type="video/mp4">
-              </video>
-              <span class="media__badge media__badge--accent">Robot</span>
+              <video autoplay muted loop playsinline preload="metadata" aria-label="Human demonstration of the Doll task"><source src="static/videos/one2many_human.mp4" type="video/mp4"></video>
             </div>
           </figure>
-          <figure>
+          <div class="one2many__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M13 5l7 7-7 7"/></svg></div>
+          <div class="one2many__targets">
+            <figure><div class="media"><video autoplay muted loop playsinline preload="metadata" aria-label="Doll, real robot, unseen configuration 1"><source src="static/videos/one2many_config_1.mp4" type="video/mp4"></video></div></figure>
+            <figure><div class="media"><video autoplay muted loop playsinline preload="metadata" aria-label="Doll, real robot, unseen configuration 2"><source src="static/videos/one2many_config_2.mp4" type="video/mp4"></video></div></figure>
+            <figure><div class="media"><video autoplay muted loop playsinline preload="metadata" aria-label="Doll, real robot, unseen configuration 3"><source src="static/videos/one2many_config_3.mp4" type="video/mp4"></video></div></figure>
+          </div>
+        </div>
+        <div class="one2many">
+          <figure class="one2many__source">
             <div class="media">
-              <video autoplay muted loop playsinline preload="metadata" aria-label="[Configuration 2]">
-                <source src="static/videos/one2many_config_2.mp4" type="video/mp4">
-              </video>
-              <span class="media__badge media__badge--accent">Robot</span>
+              <video autoplay muted loop playsinline preload="metadata" aria-label="Human demonstration of the Stamp task"><source src="static/videos/sim/stamp_human.mp4" type="video/mp4"></video>
             </div>
           </figure>
-          <figure>
+          <div class="one2many__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M13 5l7 7-7 7"/></svg></div>
+          <div class="one2many__targets">
+            <figure><div class="media"><video autoplay muted loop playsinline preload="metadata" data-rate="2" aria-label="Stamp, real robot, unseen configuration 1"><source src="static/videos/real/stamp_1.mp4" type="video/mp4"></video></div></figure>
+            <figure><div class="media"><video autoplay muted loop playsinline preload="metadata" data-rate="2" aria-label="Stamp, real robot, unseen configuration 2"><source src="static/videos/real/stamp_2.mp4" type="video/mp4"></video></div></figure>
+            <figure><div class="media"><video autoplay muted loop playsinline preload="metadata" data-rate="2" aria-label="Stamp, real robot, unseen configuration 3"><source src="static/videos/real/stamp_3.mp4" type="video/mp4"></video></div></figure>
+          </div>
+        </div>
+        <div class="one2many">
+          <figure class="one2many__source">
             <div class="media">
-              <video autoplay muted loop playsinline preload="metadata" aria-label="[Configuration 3]">
-                <source src="static/videos/one2many_config_3.mp4" type="video/mp4">
-              </video>
-              <span class="media__badge media__badge--accent">Robot</span>
+              <video autoplay muted loop playsinline preload="metadata" aria-label="Human demonstration of the Can task"><source src="static/videos/sim/can_human.mp4" type="video/mp4"></video>
             </div>
           </figure>
+          <div class="one2many__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M13 5l7 7-7 7"/></svg></div>
+          <div class="one2many__targets">
+            <figure><div class="media"><video autoplay muted loop playsinline preload="metadata" data-rate="2" aria-label="Can, real robot, unseen configuration 1"><source src="static/videos/real/can_1.mp4" type="video/mp4"></video></div></figure>
+            <figure><div class="media"><video autoplay muted loop playsinline preload="metadata" data-rate="2" aria-label="Can, real robot, unseen configuration 3"><source src="static/videos/real/can_3.mp4" type="video/mp4"></video></div></figure>
+            <figure><div class="media"><video autoplay muted loop playsinline preload="metadata" data-rate="2" aria-label="Can, real robot, unseen configuration 2"><source src="static/videos/real/can_2.mp4" type="video/mp4"></video></div></figure>
+          </div>
         </div>
       </div>
     </div>
@@ -564,54 +541,6 @@
         </div>
       </div>
 
-      <!-- ── 3. Real world: task 탭 → 그 task의 다양한 configuration 클립 ──
-           영상 경로: static/videos/real/{task}_{n}.mp4   (task: can | stamp, n: 1..3)
-           Doll 은 하이라이트 섹션과 같은 클립(static/videos/one2many_config_{n}.mp4)을 그대로 재사용
-           Can/Stamp 클립도 기존 클립과 같은 4:3 비율(640×480 또는 960×720)로 맞추면 행 높이가 일치함
-           클립 수를 바꾸려면 figure 를 추가/삭제하고 media-row--3 을 --4 등으로 바꾸면 됨 -->
-      <div class="subsection" data-reveal>
-        <h3 class="subsection__title">Zero-Shot Sim-to-Real Transfer</h3>
-        <p class="subsection__lead">Policies trained entirely in simulation run on a real UR3 + Wuji 1 hand with no real-world data or fine-tuning. Each task is solved across initial and goal poses that never appear in the human video.</p>
-
-        <!-- 좌우 화살표로 task 를 넘기는 캐러셀. task 를 추가하려면 dot 버튼과 패널을 함께 추가 -->
-        <div class="carousel" data-tabs="real">
-          <div class="carousel__head">
-            <div class="carousel__title" data-tab-label aria-live="polite">Doll</div>
-            <div class="carousel__dots" role="tablist" aria-label="Real-world task">
-              <button type="button" class="dot is-active" role="tab" data-tab="doll" aria-label="Doll" aria-selected="true"></button>
-              <button type="button" class="dot" role="tab" data-tab="can" aria-label="Can" aria-selected="false"></button>
-              <button type="button" class="dot" role="tab" data-tab="stamp" aria-label="Stamp" aria-selected="false"></button>
-            </div>
-          </div>
-          <div class="carousel__body">
-            <button type="button" class="carousel__arrow carousel__arrow--prev" data-prev aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
-            <div class="tab-panels" data-tabs-for="real">
-              <div class="tab-panel is-active" role="tabpanel" data-panel="doll">
-                <div class="media-row media-row--3">
-                  <figure><div class="media"><video src="static/videos/one2many_config_1.mp4" autoplay muted loop playsinline preload="metadata"></video></div><figcaption>[Configuration 1]</figcaption></figure>
-                  <figure><div class="media"><video src="static/videos/one2many_config_2.mp4" autoplay muted loop playsinline preload="metadata"></video></div><figcaption>[Configuration 2]</figcaption></figure>
-                  <figure><div class="media"><video src="static/videos/one2many_config_3.mp4" autoplay muted loop playsinline preload="metadata"></video></div><figcaption>[Configuration 3]</figcaption></figure>
-                </div>
-              </div>
-              <div class="tab-panel" role="tabpanel" data-panel="can" hidden>
-                <div class="media-row media-row--3">
-                  <figure><div class="media"><video data-src="static/videos/real/can_1.mp4" data-rate="2" muted loop playsinline preload="metadata"></video></div><figcaption>[Configuration 1]</figcaption></figure>
-                  <figure><div class="media"><video data-src="static/videos/real/can_2.mp4" data-rate="2" muted loop playsinline preload="metadata"></video></div><figcaption>[Configuration 2]</figcaption></figure>
-                  <figure><div class="media"><video data-src="static/videos/real/can_3.mp4" data-rate="2" muted loop playsinline preload="metadata"></video></div><figcaption>[Configuration 3]</figcaption></figure>
-                </div>
-              </div>
-              <div class="tab-panel" role="tabpanel" data-panel="stamp" hidden>
-                <div class="media-row media-row--3">
-                  <figure><div class="media"><video data-src="static/videos/real/stamp_1.mp4" data-rate="2" muted loop playsinline preload="metadata"></video></div><figcaption>[Configuration 1]</figcaption></figure>
-                  <figure><div class="media"><video data-src="static/videos/real/stamp_2.mp4" data-rate="2" muted loop playsinline preload="metadata"></video></div><figcaption>[Configuration 2]</figcaption></figure>
-                  <figure><div class="media"><video data-src="static/videos/real/stamp_3.mp4" data-rate="2" muted loop playsinline preload="metadata"></video></div><figcaption>[Configuration 3]</figcaption></figure>
-                </div>
-              </div>
-            </div>
-            <button type="button" class="carousel__arrow carousel__arrow--next" data-next aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
