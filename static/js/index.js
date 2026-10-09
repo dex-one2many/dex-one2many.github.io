@@ -531,7 +531,17 @@
       // ?cell=행,열 (0부터): 처음부터 그 칸의 패널을 연다 (링크 · 스크린샷용)
       var pre = /[?&]cell=(\d+),(\d+)/.exec(q);
       var preEl = pre && stage.querySelector('.taxo__cell[data-grasp][data-rc="' + pre[1] + ',' + pre[2] + '"]');
-      if (preEl) openCell(preEl, false);
+      if (preEl) {
+        openCell(preEl, false);
+      } else if (current && current.panel.cells) {
+        // 기본으로 한 칸을 열어 둔다: 대표 칸(rep) → 타일 칸(zoomed) → 첫 칸
+        var cellsNow = current.panel.cells, keysNow = Object.keys(cellsNow).sort();
+        var defKey = keysNow.filter(function (k) { return cellsNow[k].rep; })[0]
+                  || keysNow.filter(function (k) { return cellsNow[k].zoomed; })[0]
+                  || keysNow[0];
+        var defEl = defKey && stage.querySelector('.taxo__cell[data-grasp][data-rc="' + defKey + '"]');
+        if (defEl) openCell(defEl, false);
+      }
 
       window.addEventListener('resize', layoutGrid);
       if ('ResizeObserver' in window) new ResizeObserver(layoutGrid).observe(stage);
