@@ -414,9 +414,12 @@ p.section__lead {
 
 .venue {
   margin-top: 8px;
-  font-weight: 600;
+  font-size: 1.05em;
+  font-weight: 500;
   color: var(--text);
 }
+.venue strong { font-weight: 700; }
+.venue__emoji { margin-right: 2px; }
 
 .paper-header .btn-row { margin-top: 28px; }
 
